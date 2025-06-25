@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/img/logo128.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capacity analisys summary</title>
+  <link rel="stylesheet" href="assets/css/font-awesome/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/sass.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/daterangepicker.css">
+  <style>
+    /* @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap'); */
+    
+    *{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    
+    html {
+      height: -webkit-fill-available;
+      font-size: 14px;
+    }
+    
+    .bg-purple {
+      background: rgb(235,59,142);
+      background: linear-gradient(180deg, rgba(235,59,142,1) 0%, rgba(235,59,142,1) 100%);
+    }
+    
+    .text-purple {
+      background: rgb(248,2,55);
+      background: linear-gradient(90deg, rgba(248,2,55,1) 0%, rgba(248,2,156,1) 100%);
+    }
+   
+  </style>
+</head>
+<body class="d-flex flex-column h-100">
+  <header>
+    <div class="container-fluid fixed-top p-2 bg-purple text-white ">
+      <div class="d-flex justify-content-between">
+        <div class="align-self-center fw-bold"><span class="fas fa-warehouse ms-2 me-2"></span> Capacity Analisys Summary</div>
+        <div class="align-self-center">
+          <!-- <a id="nav-nav-list" href="index.html" class="btn btn-sm btn-outline-secondary"><span class="fas fa-angle-left"> Back</span></a> -->
+          <a id="nav-men-list" href="index.html" class="btn btn-sm btn-light fw-bold"><span class="fas fa-angle-left"></span> Back</a>
+          <a id="nav-cnt-header" href="#" class="btn btn-sm btn-light d-none fw-bold"><span class="fas fa-angle-left"></span> Back</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main role="main" class="flex-shrink-0 pt-5">
+    <div class="container-fluid">
+      <!-- list -->
+      <div id="filter-list" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 mt-2 ">
+        <!-- <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Date</span>
+            <input id="date" name="date" type="text" class="form-control">
+          </div>
+        </div> -->
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Unit</span>
+            <select name="unit" id="unit" class="form-select">
+              <option value="ALL">ALL</option>
+              <option value="A">MATTEL A</option>
+              <option value="B">MATTEL B</option>
+              <option value="C">MATTEL C</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Line</span>
+            <select name="line" id="line" class="form-select">
+              <option value="ALL">ALL</option>
+              <option value="1">MATTEL A</option>
+              <option value="2">MATTEL B</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Group</span>
+            <select name="group" id="group" class="form-select">
+              <option value="ALL">ALL</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="J">J</option>
+              <option value="K">K</option>
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="A3">A3</option>
+              <option value="A4">A4</option>
+              <option value="A5">A5</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="B3">B3</option>
+              <option value="B4">B4</option>
+              <option value="B5">B5</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="B3">B3</option>
+              <option value="B4">B4</option>
+              <option value="B5">B5</option>
+              <option value="C1">C1</option>
+              <option value="C2">C2</option>
+              <option value="C3">C3</option>
+              <option value="C4">C4</option>
+              <option value="C5">C5</option>
+              <option value="D1">D1</option>
+              <option value="D2">D2</option>
+              <option value="D3">D3</option>
+              <option value="D4">D4</option>
+              <option value="D5">D5</option>
+              <option value="E1">E1</option>
+              <option value="E2">E2</option>
+              <option value="E3">E3</option>
+              <option value="E4">E4</option>
+              <option value="E5">E5</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Style</span>
+            <input id="style" name="style" type="text" class="form-control">
+            <button type="button" id="refresh" class="btn btn-outline-secondary">
+              <span class="fa fa-refresh"></span>
+            </button>
+          </div>
+        </div>        
+      </div>
+      <div id="head-list" class="row mt-3">
+        <div class="col">
+          <ul class="nav nav-tabs fw-bold">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" id="tab-d"><span class="far fa-file-alt"></span> Detail Analisys</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#" id="tab-s"><span class="far fa-file-alt"></span> Count Summary</a>
+            </li> -->
+          </ul>
+        </div>
+      </div> 
+      <div id="detail-list" class="row mt-2">
+        <div class="col">                   
+          <div class="accordion accordion-flush" id="div-data-detail">
+            <!-- <div class="accordion-item">
+              <table class="table accordion-header">
+                <tbody>
+                  <tr class="align-middle text-start">
+                    <td class="fw-bold" style="width:40px;">1.</td>
+                    <td class="fw-bold">F.TOWEL JJB43</td>
+                    </td>
+                    <td style="width:80px;">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-1" aria-expanded="false" aria-controls="flush-collapse-1">
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+            <!-- <div id="flush-collapse-1" class="accordion-collapse collapse" aria-labelledby="flush-heading-1" data-bs-parent="#div-data-detail">
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr class="align-middle table-light text-center fw-bold">
+                      <td>No</td>
+                      <td>Date</td>
+                      <td>Unit</td>
+                      <td>Line</td>
+                      <td>Group</td>
+                      <td>Leader</td>
+                      <td>Time Balance</td>
+                      <td>By</td>
+                      <td>Act</td>
+                    </tr>                    
+                  </thead>
+                  <tbody>
+                    <tr class="align-middle text-center">
+                      <td>1</td>
+                      <td>2025-06-17</td>
+                      <td>A</td>
+                      <td class="text-start">LINE 1</td>
+                      <td>C</td>
+                      <td class="text-start">NOVY</td>                      
+                      <td>-98</td>
+                      <td class="text-start">MARIA</td>
+                      <td>
+                        <button id="btn-det-1" data-bs-id="122" class="btn btn-sm btn-outline-success">
+                          <span class="fas fa-search"></span>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="align-middle text-center">
+                      <td>2</td>
+                      <td>2025-06-16</td>
+                      <td>A</td>
+                      <td class="text-start">LINE 2</td>
+                      <td>C</td>
+                      <td class="text-start">SENDY</td>                      
+                      <td>-30</td>
+                      <td class="text-start">MARIA</td>
+                      <td>
+                        <button id="btn-det-1" data-bs-id="122" class="btn btn-sm btn-outline-success">
+                          <span class="fas fa-search"></span>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- loader -->
+      <div id="lot-loader" class="row mt-2 d-none">
+        <div class="col">
+          <div id="loader" class="mt-3 text-center">
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- modal dialog -->
+  <div class="modal fade" id="modalDialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Delete current lot ?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button id="btn-modal-yes" type="button" class="btn btn-warning">Yes</button>
+          <button id="btn-modal-no" type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3">
+    <div class="container-fluid fixed-bottom p-1 bg-purple text-white">
+      <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
+          <span class="small">SUI APPS V2.0 &copy; 2024 PT. Sahabat Unggul International </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap/popper.min.js"></script>
+  <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+  <script src="assets/js/moment.min.js"></script>
+  <script src="assets/js/daterangepicker.js"></script>
+  <script src="assets/js/xlsx.full.min.js"></script>
+  <script type="module">
+    import {setCookie, getCookie} from './assets/js/main.js';
+    $(document).ready(function(){
+      
+      let path = window.location.pathname;
+      let page = path.split("/").pop();
+      setCookie('pagex', page, 7);
+
+      function formatNumber(number){
+        return new Intl.NumberFormat().format(number);
+      }
+
+      let G_PRD_LINE = "'"+"XX"+"'";
+      let G_CUR_TABLE = 'table-header';
+      let G_CUR_LINE_CODE = '';
+      let G_CUR_LINE = '';
+      let G_CUR_LEAD = '';
+      let G_CUR_GROUP = '';
+      let G_CUR_PART = '';
+      let G_CUR_DESC = '';
+      
+      let linex = getCookie('linex');
+      const lineArrays = linex.split("|");
+      //console.log(lineArray);
+      
+      let i = 0;
+      let line_html = ''; let strArray = '';
+      while (i < lineArrays.length) {
+        strArray = lineArrays[i];
+        if (strArray != '') {
+        let lineAarray = strArray.split("=");
+          line_html = line_html +`
+          <option value="${lineAarray[0]}">${lineAarray[1]}</option>`;
+          G_PRD_LINE += ",'"+ lineAarray[0]+"'";
+        }
+        //console.log(strArray);
+        //console.log(lineAarray[1]);
+        i++;
+      }
+      // apend line data
+      $('#line').empty();
+      $('#line').append(line_html);
+      //console.log(line_html);
+
+      let unitx = getCookie('unitx');
+      let html_unit = '';
+      //console.log(unitx);
+      if (unitx == 'A') {
+        html_unit = `
+          <option value="ALL">ALL</option>
+          <option value="A" selected>MATTEL A</option>
+          <option value="B">MATTEL B</option>
+          <option value="C">MATTEL C</option>
+        `;
+      } else if (unitx == 'B') {
+        html_unit = `
+          <option value="ALL">ALL</option>
+          <option value="A">MATTEL A</option>
+          <option value="B" selected>MATTEL B</option>
+          <option value="C">MATTEL C</option>
+        `;
+      } else if (unitx == 'C') {
+        html_unit = `
+          <option value="ALL">ALL</option>
+          <option value="A">MATTEL A</option>
+          <option value="B">MATTEL B</option>
+          <option value="C" selected>MATTEL C</option>
+        `;
+      } else {
+        html_unit = `
+          <option value="ALL" selected>ALL</option>
+          <option value="A">MATTEL A</option>
+          <option value="B">MATTEL B</option>
+          <option value="C">MATTEL C</option>
+        `;
+      }
+      $('#unit').empty();
+      $('#unit').append(html_unit);
+
+      function sortTable(tableid, startRow, sortCol, dataType = 'string') {
+        let table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById(tableid);
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+          first, which contains table headers):*/
+          for (i = startRow; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[sortCol];
+            y = rows[i + 1].getElementsByTagName("TD")[sortCol];
+
+            //console.log(x.innerHTML.toLowerCase());
+            //check if the two rows should switch place:
+            if (dataType == 'string') {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            } else {
+              if (Number(x.innerHTML.toLowerCase()) < Number(y.innerHTML.toLowerCase())) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+
+      //load list
+      const setUrlParam = (section, data_id = '', defect_type = 'N', defect_data = '0#0') => {
+        let urlParam = "";
+        if (section == 1) {
+          urlParam = new URLSearchParams({
+            date: $("#date").val(),
+            unit: $("#unit").val(),
+            line: $("#line").val(),
+            line_all: G_PRD_LINE,
+            group: $("#group").val(),
+            style: $("#style").val()            
+          });
+        } 
+        return urlParam;
+      }
+
+      const setView = (section) =>{
+        switch(section){
+          case 'view-hour-list':
+            $('#lot-loader').addClass('d-none');
+            $('#filter-list').removeClass('d-none');
+            $('#nav-men-list').removeClass('d-none');
+          break;
+        }
+      };
+
+      const fetchData = async (section, urlParam) => {
+        try {
+          let apiSection = "";
+          if(section == 'view-detail-list'){
+            apiSection = "ie.php?section=6&" + urlParam; 
+          } else if (section == 'view-list-det'){
+            apiSection = "ie.php?section=7&" + urlParam;
+          }
+
+          let res = '';
+          if (section == 'add-detail-list') {
+            res = await fetch("assets/api/"+ apiSection, {
+              method : "POST",
+              body : urlParam
+            });
+          } else {
+            res = await fetch("assets/api/"+ apiSection, {
+              method : "GET",
+              headers: {
+                "Content-Type": "application/json"
+              }
+            });
+          }
+
+          const output = await res.json();
+          //console.log(output.auth);
+          
+          if (output.auth == 'false') {
+            location.replace("login.html");
+            return;
+          } else {
+            if(output.auth_view == 'false') {
+              let html_data = '<span class="text-danger">Anda tidak mempunyai izin untuk membuka halaman ini.</span>';
+              $('.modal-dialog').removeClass('modal-xl');
+              $('.modal-title').empty();
+              $('.modal-title').append('Error access');
+              $('.modal-body').empty();
+              $('.modal-body').append(html_data);
+              $('#btn-modal-yes').addClass('d-none');
+              $('#btn-modal-no').addClass('d-none');
+              $('.btn-close').addClass('d-none');
+              
+              $('#btn-modal-accs').remove();
+              $('.modal-footer').append('<button id="btn-modal-accs" type="button" class="btn btn-primary">Exit</button>');
+              $('#btn-modal-accs').click(function (e){
+                e.preventDefault;
+                location.replace("index.html");
+              });
+
+              $("#modalDialog").modal('show');
+
+              return;
+            }
+
+            if(output.auth_mod == 'false') {
+              
+              let html_data = '<span class="text-danger">Anda tidak mempunyai izin untuk melakukan modifikasi di halaman ini.</span>';
+              $('.modal-dialog').removeClass('modal-xl');
+
+              $('.modal-title').empty();
+              $('.modal-title').append('Invalid access');
+
+              $('.modal-body').empty();
+              $('.modal-body').append(html_data);
+
+              $('#btn-modal-yes').addClass('d-none');
+              $('#btn-modal-no').empty();
+              $('#btn-modal-no').append('Ok');
+              $('#btn-modal-no').removeClass('d-none');
+              $("#modalDialog").modal('show');
+              return;
+            }
+
+            if (section == 'view-detail-list') { // plan list
+              setDetailList(output);
+            } else if (section == 'view-list-det'){
+              setListDet(output);
+            } else {
+              console.log(output);
+            }
+          }
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      //daily list
+      function setDetailList(result){
+        // console.log(result);
+        let html_data = ''; let html_sep = '';
+        let timex = '';
+
+        if (result.empty == undefined) {
+          let curPart = '';
+          let incRow = 1; let incRowLine = 1; let incRowbs = 1; let incInp = 1; let incNo = 1;
+          for (let key in result){
+            let blstyle = '';
+            timex = result[key]['timex'];
+            if (Number(timex) < 0 ) {
+              blstyle = 'text-danger fw-bold';
+            } else {
+              blstyle = 'fw-bold';
+            }
+            
+            if (curPart != result[key]['partx']) {
+              if (key != 0) {
+                html_sep = `
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                `;
+              } else {
+                html_sep = ``;
+              }
+
+              html_data += html_sep + `
+                <div class="accordion-item">
+                  <table class="table table-sm accordion-header table-light" id="flush-heading-${incRowLine}">
+                    <tbody>
+                      <tr class="align-middle text-start">
+                        <td class="fw-bold" style="width:60px;">${incRowLine}.</td>
+                        <td class="fw-bold">${result[key]['partdx']}</td>
+                        <td class="fw-bold text-end" style="width:180px;"><span id="span-total-part-${incRowLine}" data-bs-span="${incRowbs}"></span></td>
+                        <td style="width:70px;">
+                          <button class="accordion-button collapsed fw-bold bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${incRowLine}" aria-expanded="false" aria-controls="flush-collapse-${incRowLine}">
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="flush-collapse-${incRowLine}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${incRowLine}" data-bs-parent="#div-data-header">
+                  <table class="table table-sm">
+                    <thead>
+                      <tr class="align-middle text-center table-light fw-bold">
+                        <td class="" scope="col">No</td>
+                        <td class="" scope="col">Date</td>
+                        <td class="" scope="col">Unit</td>
+                        <td class="" scope="col">Line</td>
+                        <td class="" scope="col">Group</td>
+                        <td class="" scope="col">Time Balance</td>
+                        <td class="" scope="col">By</td>
+                        <td class="" scope="col">Act</td>
+                      </tr>
+                    </thead>
+                    <tbody id="curCount-${incInp}">
+              `;
+              incRowLine++;
+              incRowbs++;
+              incInp++;
+              incNo = 1;
+            }
+
+            html_data += `
+              <tr>
+                <td class="text-center align-middle">${incNo}</td>
+                <td class="text-center align-middle">${result[key]['datex']}</td>
+                <td class="text-center align-middle">${result[key]['unitx']}</td>
+                <td class="text-center align-middle">${result[key]['linedx']}</td>
+                <td class="text-center align-middle">${result[key]['groupx']}</td>
+                <td id="td-timex-${result[key]['idx']}" data-bs-td="${incRowbs}" class="text-center ${blstyle}">${result[key]['timex']}</td>
+                <td class="text-center align-middle">${result[key]['byx']}</td>
+                <td class="text-center align-middle">
+                  <button id="btn-det-${incRow}"
+                    data-bs-id="${result[key]['idx']}"
+                    class="btn btn-sm btn-outline-success" >
+                    <span class="fas fa-search"></span>
+                  </button>
+                </td>
+              </tr>
+            `;
+            
+            curPart = result[key]['partx'];
+            incRow++; 
+            incNo++;
+          }
+          html_sep = `
+                </tbody>
+              </table>
+            </div>
+          </div>
+          `;
+
+          html_data += html_sep;
+        }
+
+        //console.log(html_data);
+        $('#div-data-detail').empty();
+        $('#div-data-detail').append(html_data);
+
+        $('[id^=btn-det-]').click(function(){
+          let data_id = $(this).attr('data-bs-id');
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            id: data_id
+          });
+          fetchData('view-list-det', urlPar);
+        });
+
+        $('[id^=span-total-part-]').each(function(e){
+          e.preventDefault;
+
+          let curSpan = 0;
+          curSpan = $(this).attr('data-bs-span');
+          var count = $('#curCount-' + curSpan).children('tr').length;
+          
+          $('#span-total-part-' + curSpan).empty();
+          $('#span-total-part-' + curSpan).append('Analized ' + count + ' Times');
+          
+          // let avgstyle = '';
+          // if (timex < 0) {
+          //   avgstyle = 'text-danger fw-bold';
+          // } else {
+          //   avgstyle = 'text-success fw-bold';
+          // }
+        });
+      }
+      
+      //detail list
+      function setListDet(result){
+        let htmlData = '', htmlHead = '', htmlForm = '', htmlPart = '', htmlStg = '', incRow = 1, incSs = 1;
+        let ctdDate='', ctdPart='', ctdPartd='', ctdLine='', ctdLined='';
+        let ctdAvg = 0, ctdTotavg = 0,  ctdAvgend = 0, ctdSs = 0, ctdRej = 0, ctdSeam = '', ctdSpi = '', ctdDim = '', ctdOth = '', ctdAct = '';
+        let ctdByx = '', ctdStg = '', ctdGroup='', ctdId = '', curFlag = '';
+        let totBlTime = 0, totRej = 0, totSs = 0, totAvg = 0;
+        htmlHead += `
+        <div class="d-flex">
+          <table class="table me-3">
+            <tbody class="align-middle">
+              <tr>
+                <td class="table-primary">Style No</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-part">3</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Line desc</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-line">3</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Stage</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-stg">PP/PS</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <tbody class="align-middle">
+              <tr>
+                <td class="table-primary">Date</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-date" data-bs-id="">3</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Review By</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-byx">Bimo</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Average PPM (Inline)</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-avg">(Reject/Sample Size)*1000k</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Average PPM (Endline)</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-avg-end">(Reject/Sample Size)*1000k</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        `;
+        
+        if (result.empty == undefined) {
+          for (let key in result){
+            if (key == 0) {
+              ctdId = result[key]['idx'];
+              ctdDate = result[key]['datex'];
+              ctdLine = result[key]['linex'];
+              ctdLined = result[key]['linedx'];
+              ctdByx = result[key]['byx'];
+              ctdStg = result[key]['stg'];
+              ctdSs = result[key]['ss'];
+              ctdRej = result[key]['rej'];
+              ctdSeam = result[key]['seam'];
+              ctdSpi = result[key]['spi'];
+              ctdDim = result[key]['dim'];
+              ctdOth = result[key]['oth'];
+              ctdAct = result[key]['act'];
+              ctdGroup = result[key]['groupx'];
+              ctdPart = result[key]['partx'];
+              ctdPartd = result[key]['partdx'];
+            }
+            totSs += Number(result[key]['ss']);
+            totRej += Number(result[key]['rej']);
+            
+            // console.log(totSs);
+            // console.log(totRej);
+            // console.log(ctdAvg);
+            // console.log(totAvg);
+
+            if (curFlag != result[key]['pflagx']){
+              if (result[key]['pflagx'] == 'CBS'){
+                htmlData += `
+                <span>Sewing Process (Inline)</span>
+                <table class="table table-sm">
+                  <thead>
+                    <tr class="align-middle text-center table-success">
+                      <th rowspan="2">Process</th>
+                      <th rowspan="2" style="width:75px">Sample Size</th>
+                      <th rowspan="2" style="width:75px">Reject</th>
+                      <th colspan="4">Result</th>
+                      <th rowspan="2">Action</th>
+                    </tr>
+                    <tr class="align-middle text-center table-success">
+                      <th>SEAM</th>
+                      <th>SPI</th>
+                      <th>DIMENTION</th>
+                      <th>OTHERS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr class="align-middle text-start">
+                    <td colspan="8" class="table-warning">CBS process</td>
+                  </tr>
+                `;
+              } else {
+                htmlData += `
+                <table class="table table-sm">
+                  <span>Finished Costume (Endline)</span>
+                  <thead>
+                    <tr class="align-middle text-center table-success">
+                      <th>No</th>
+                      <th>Aesthetic</th>
+                      <th>Function</th>
+                      <th>Dimention</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                `;
+              }
+            }            
+            // let tdSumColor = '';
+            // if (Number(result[key]['tpoprct']) < Number(result[key]['thx'])) {
+            //   if (Number(result[key]['oprct1x']) > 0 ) {
+            //     tdSumColor = 'table-danger';
+            //   }
+            // }
+
+            // let tdSumColorBl = '';
+            // if (Number(result[key]['oprblx']) < 0) {
+            //   if (Number(result[key]['oprct1x']) > 0 ) {
+            //     tdSumColorBl = 'table-danger';
+            //   }
+            // }
+
+            if (result[key]['pflagx'] == 'CBS') {
+              if (result[key]['ss'] == null || result[key]['ss'] == 0 || result[key]['rej'] == null || result[key]['rej'] == 0) {
+                ctdAvg = 0;
+                if (ctdTotavg == null || ctdTotavg == 0) {
+                  ctdTotavg = 0;
+                } else {
+                  ctdTotavg = Number(result[key]['totavgppm']);
+                }
+              } else {
+                ctdAvg += Number(result[key]['avgppm']);
+                ctdTotavg = Number(result[key]['totavgppm']);
+              }
+              htmlData += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['idx']}">
+                  <td class="">${result[key]['procdx']}<br><span class="small">M/C: ${result[key]['mcx']}</span></td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-center"
+                    data-bs-fl="D"
+                    data-bs-proc="${result[key]['procx']}"
+                    data-bs-idh="${result[key]['idx']}"
+                    data-bs-count="${incRow}"
+                    id="ss-${result[key]['procx']}" name="ss-${result[key]['procx']}" min="1" max="9999" value="${result[key]['ss']}">
+                  </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-center"
+                    data-bs-fl="D"
+                    data-bs-proc="${result[key]['procx']}"
+                    data-bs-idh="${result[key]['idx']}"
+                    data-bs-count="${incRow}"
+                    id="rej-${result[key]['procx']}" name="rej-${result[key]['procx']}" min="1" max="9999" value="${result[key]['rej']}">
+                  </td>
+                  <td class="" style="width:90px">
+                    <input type="text" class="form-control form-control"
+                    data-bs-fl="D"
+                    data-bs-proc="${result[key]['procx']}"
+                    name="seam-${result[key]['procx']}" id="seam-${result[key]['procx']}" value="${result[key]['seam']}">                
+                  </td>
+                  <td class="" style="width:90px">
+                    <input type="text" class="form-control form-control"
+                    data-bs-fl="D"
+                    data-bs-proc="${result[key]['procx']}"
+                    name="spi-${result[key]['procx']}" id="spi-${result[key]['procx']}" value="${result[key]['spi']}">                
+                  </td>
+                  <td class="">
+                    <input type="text" class="form-control form-control"
+                    data-bs-fl="D"
+                    data-bs-proc="${result[key]['procx']}"
+                    name="dim-${result[key]['procx']}" id="dim-${result[key]['procx']}" value="${result[key]['dim']}">                
+                  </td>
+                  <td class="">
+                    <input type="text" class="form-control form-control"
+                    data-bs-fl="D"
+                    data-bs-proc="${result[key]['procx']}"
+                    name="oth-${result[key]['procx']}" id="oth-${result[key]['procx']}" value="${result[key]['oth']}">                
+                  </td>
+                  <td class="">
+                    <textarea type="text" class="form-control form-control"
+                      data-bs-fl="D"
+                      data-bs-proc="${result[key]['procx']}"
+                      name="act-${result[key]['procx']}" id="act-${result[key]['procx']}" value="${result[key]['act']}">
+                    </textarea>
+                  </td>
+                </tr>
+              `;
+            } else {
+              let c_stat = '';
+              if (result[key]['c_stat'] == null || result[key]['c_stat'] == "null") {
+                c_stat = `
+                  <option value="0">Accept</option>
+                  <option value="1">Reject</option>
+                `;
+              } else if (result[key]['c_stat'] == '0') {
+                c_stat = `
+                  <option value="0" selected>Accept</option>
+                  <option value="1">Reject</option>
+                `;
+              } else {
+                c_stat = `
+                  <option value="0">Accept</option>
+                  <option value="1" selected>Reject</option>
+                `;
+              }
+
+              ctdAvgend += Number(result[key]['c_stat']);
+              // console.log(ctdAvgend);
+
+              // if (ctdAvgend == 0) {
+              //   ctdAvgend = 0;
+              // } else {
+              //   ctdAvgend = Number(result[key]['c_stat']);
+              // }
+              htmlData += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['idx']}">
+                  <td class="text-center">${incSs}</td>
+                  <td class="">
+                    <input type="text" class="form-control form-control"
+                      data-bs-fl="DC"
+                      data-bs-proc_dc="${result[key]['procx']}"
+                      name="c_aes-${result[key]['procx']}" id="c_aes-${result[key]['procx']}" value="${result[key]['c_aes']}">                
+                  </td>
+                  <td class="">
+                    <input type="text" class="form-control form-control"
+                      data-bs-fl="DC"
+                      data-bs-proc_dc="${result[key]['procx']}"
+                      name="c_func-${result[key]['procx']}" id="c_func-${result[key]['procx']}" value="${result[key]['c_func']}">                
+                  </td>
+                  <td class="">
+                    <input type="text" class="form-control form-control"
+                      data-bs-fl="DC"
+                      data-bs-proc_dc="${result[key]['procx']}"
+                      name="c_dim-${result[key]['procx']}" id="c_dim-${result[key]['procx']}" value="${result[key]['c_dim']}">                
+                  </td>
+                  <td class="">
+                    <select class="form-control form-control"
+                      data-bs-fl="DC"
+                      data-bs-proc_dc="${result[key]['procx']}"
+                      name="c_stat-${result[key]['procx']}" id="c_stat-${result[key]['procx']}">
+                        ${c_stat}
+                    </select>
+                  </td>
+                </tr>
+              `;
+              incSs++;
+              // <td class="">
+              //   <input type="text" class="form-control form-control"
+              //     data-bs-fl="DC"
+              //     data-bs-proc_dc="${result[key]['procx']}"
+              //     name="c_stat-${result[key]['procx']}" id="c_stat-${result[key]['procx']}" value="${result[key]['c_stat']}">                
+              // </td>
+            }
+            incRow++;
+            totBlTime += Number(result[key]['bltmx']);
+            curFlag = result[key]['pflagx'];
+          }
+        }
+
+        htmlData += `
+            </tbody>
+          </table>
+        `;
+
+        $('.modal-dialog').removeClass('modal-xl'); 
+        $('.modal-dialog').addClass('modal-fullscreen');
+        $('.modal-title').empty();
+        $('.modal-title').append('Detail Review');
+        $('.modal-body').empty();
+        $('.modal-body').append(htmlHead + htmlData);
+        $('#btn-modal-yes').addClass('d-none');
+        $('#btn-modal-no').addClass('d-none');
+        $('#btn-save-yes').addClass('d-none');
+        $('#btn-save-no').addClass('d-none');
+        $("#modalDialog").modal('show');
+
+        //set header
+
+        // htmlPart +=`
+        //   <div class="input-group text-start">
+        //     <span class="input-group-text">${ctdPart}</span>
+        //     <span class="input-group-text">${ctdPartd}</span>
+        //   </div>
+        // `;
+        // <span class="input-group-text">${ctdPart}</span>
+        // <span class="input-group-text">${ctdPartd}</span>
+
+        htmlPart = `
+          ${ctdPart} | ${ctdPartd}
+        `;
+        // ${ctdPart} - ${ctdPartd}
+
+        htmlForm +=`
+          <div class="input-group text-start">
+            <span class="input-group-text">${ctdLined}</span>
+            <span class="input-group-text">${ctdGroup}</span>
+          </div>
+        `;
+
+          // <span class="input-group-text">${ctdLined}</span>
+          // <span class="input-group-text">${ctdGroup}</span>
+          // <span class="input-group-text">${ctdLead}</span>
+
+        // htmlStg +=`
+        //   <div class="input-group text-start">
+        //     <span class="input-group-text">${ctdStg}</span>
+        //   </div>
+        // `;
+        
+        $('#tdh-date').empty();
+        $('#tdh-date').append(ctdDate);
+        $('#tdh-date').attr('data-bs-id', ctdId);
+        $('#tdh-stg').empty();
+        $('#tdh-stg').append(ctdStg);
+        $('#tdh-byx').empty();
+        $('#tdh-byx').append(ctdByx);
+        $('#tdh-part').empty();
+        $('#tdh-part').append(htmlPart);
+        $('#tdh-line').empty();
+        $('#tdh-line').append(htmlForm);
+
+        let avgstyle = '';
+        if (ctdTotavg > 50) {
+          avgstyle = 'text-danger fw-bold';
+        } else {
+          avgstyle = 'text-success fw-bold';
+        }
+
+        let curIdh = 0;
+        let curCount = 0;
+        $('[id^=ss-]').each(function (e){
+          e.preventDefault;
+          curIdh = $(this).attr('data-bs-idh');
+          curCount = $(this).attr('data-bs-count');
+        });
+
+        if (ctdAvg == null || ctdAvg == 0) {
+          if (ctdTotavg == null || ctdTotavg == 0) {
+            $('#tdh-avg').empty();
+            $('#tdh-avg').removeClass('text-danger');
+            $('#tdh-avg').append("-");
+
+            $('#td-avgh-' + curIdh).empty();
+            $('#td-avgh-' + curIdh).removeClass('text-danger');
+            $('#td-avgh-' + curIdh).append("-");
+          } else {
+            $('#tdh-avg').empty();
+            $('#tdh-avg').append(((ctdTotavg).toFixed(0)),"K");
+            $('#tdh-avg').addClass(avgstyle);
+
+            $('#td-avgh-' + curIdh).empty();
+            $('#td-avgh-' + curIdh).append(((ctdTotavg).toFixed(0)),"K");
+            $('#td-avgh-' + curIdh).addClass(avgstyle);
+          }
+        } else {
+          $('#tdh-avg').empty();
+          $('#tdh-avg').append(((ctdAvg/curCount).toFixed(0)),"K");
+          $('#tdh-avg').addClass(avgstyle);
+
+          $('#td-avgh-' + curIdh).empty();
+          $('#td-avgh-' + curIdh).append(((ctdAvg/curCount).toFixed(0)),"K");
+          $('#td-avgh-' + curIdh).addClass(avgstyle);
+        }
+
+        let curAvgend = 0;
+        $('[id^=c_stat-]').each(function (e){
+          e.preventDefault;
+          let curProc = $(this).attr('data-bs-proc_dc');
+          curAvgend += Number($('#c_stat-' + curProc).val());
+        });
+
+        $('#tdh-avg-end').empty();
+        $('#tdh-avg-end').append((((ctdAvgend/5)*1000).toFixed(0)),"K");
+
+        $('#ss-').val(ctdSs);
+        $('#rej-').val(ctdRej);
+        $('#seam-').val(ctdSeam);
+        $('#spi-').val(ctdSpi);
+        $('#dim-').val(ctdDim);
+        $('#oth-').val(ctdOth);
+        $('#act-').val(ctdAct);
+        $('#tdh-avg-end').val();
+
+        //Sample Size
+        $('[id^=ss-]').change(function (e){
+          e.preventDefault;
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          countData(curProc);
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        $('[name^=ss-]').change(function (e){
+          e.preventDefault;
+          let data_id = $(this).attr('data-bs-idh');
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            id: data_id
+          });
+          fetchData('view-list-det', urlPar);
+        });
+
+        //Rej
+        $('[id^=rej-]').change(function (e){
+          e.preventDefault;
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          countData(curProc);
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        $('[name^=rej-]').change(function (e){
+          e.preventDefault;
+          let data_id = $(this).attr('data-bs-idh');
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            id: data_id
+          });
+          fetchData('view-list-det', urlPar);
+        });
+
+        //SEAM
+        $('[id^=seam-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //SPI
+        $('[id^=spi-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //DIMENTION
+        $('[id^=dim-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //OTHERS
+        $('[id^=oth-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //Action
+        $('[id^=act-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc');
+          urlPar = new URLSearchParams({
+            rflag: 'D',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rSs: $('#ss-' + curProc).val(),
+            rRej: $('#rej-' + curProc).val(),
+            rSeam: $('#seam-' + curProc).val(),
+            rSpi: $('#spi-' + curProc).val(),
+            rDim: $('#dim-' + curProc).val(),
+            rOth: $('#oth-' + curProc).val(),
+            rAct: $('#act-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //Aesthetic
+        $('[id^=c_aes-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc_dc');
+          urlPar = new URLSearchParams({
+            rflag: 'DC',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rAes: $('#c_aes-' + curProc).val(),
+            rFunc: $('#c_func-' + curProc).val(),
+            rC_dim: $('#c_dim-' + curProc).val(),
+            rStat: $('#c_stat-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //Function
+        $('[id^=c_func-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc_dc');
+          urlPar = new URLSearchParams({
+            rflag: 'DC',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rAes: $('#c_aes-' + curProc).val(),
+            rFunc: $('#c_func-' + curProc).val(),
+            rC_dim: $('#c_dim-' + curProc).val(),
+            rStat: $('#c_stat-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //Cus Dimention
+        $('[id^=c_dim-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc_dc');
+          urlPar = new URLSearchParams({
+            rflag: 'DC',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rAes: $('#c_aes-' + curProc).val(),
+            rFunc: $('#c_func-' + curProc).val(),
+            rC_dim: $('#c_dim-' + curProc).val(),
+            rStat: $('#c_stat-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //Status
+        $('[id^=c_stat-]').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          let curProc = $(this).attr('data-bs-proc_dc');
+          urlPar = new URLSearchParams({
+            rflag: 'DC',
+            rIdProc: curProc,
+            rId: $('#tdh-date').attr('data-bs-id'),
+            rAes: $('#c_aes-' + curProc).val(),
+            rFunc: $('#c_func-' + curProc).val(),
+            rC_dim: $('#c_dim-' + curProc).val(),
+            rStat: $('#c_stat-' + curProc).val()
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        function countData(procId){
+          let curProc = procId;
+          let curValOp1 = Number($('#txtopra1-'+curProc).val());
+          let curValOp2 = Number($('#txtopra2-'+curProc).val());
+          let curTime = 3600;
+          let curTt = Number($('#tdh-tt').html());
+          let curTh = Number($('#tdh-th').html());
+          let curPop1 = (curValOp1 == 0 ? 0 : Number(curTime/curValOp1));
+          let curPop2 = (curValOp2 == 0 ? 0 : Number(curTime/curValOp2));
+
+          //console.log(curProc + "|" + curValOp1 + "|" + curValOp2 + "|" + curTt + "|" + curTh);
+
+          //pot op1
+          $('#td-pot-op1-'+curProc).empty();
+          $('#td-pot-op1-'+curProc).append((curPop1).toFixed(0));
+
+          //pot op2
+          $('#td-pot-op2-'+curProc).empty();
+          $('#td-pot-op2-'+curProc).append((curPop2).toFixed(0));
+
+          //pot sum
+          $('#td-pot-opt-'+curProc).empty();
+          $('#td-pot-opt-'+curProc).append((curPop1+curPop2).toFixed(0));
+
+          //ot total
+          if ((Number(curPop1)+Number(curPop2)) < curTh ) {
+            $('#td-pot-opt-'+curProc).removeClass('table-danger');
+            if ((Number(curPop1)+Number(curPop2)) != 0) {              
+              $('#td-pot-opt-'+curProc).addClass('table-danger');
+            }
+          } else{
+            $('#td-pot-opt-'+curProc).removeClass('table-danger');
+          }
+
+          //op balance
+          let curOpb = (curPop1+curPop2)-curTh;
+          $('#td-pot-opb-'+curProc).empty();
+          $('#td-pot-opb-'+curProc).append((curOpb).toFixed(0));
+          if (curOpb < 0 ) {
+            $('#td-pot-opb-'+curProc).removeClass('table-danger');
+            if ((Number(curPop1)+Number(curPop2)) != 0) {   
+              $('#td-pot-opb-'+curProc).addClass('table-danger');
+            }
+          } else {
+            $('#td-pot-opb-'+curProc).removeClass('table-danger');
+          }
+          
+          //op need
+          let curOpn = (curValOp1/curTt);
+          $('#td-pot-opn-'+curProc).empty();
+          $('#td-pot-opn-'+curProc).append((curOpn).toFixed(2));
+
+          //bln time
+          let curTimeBln = (curOpb*curValOp1)/60;
+          $('#td-pot-blt-'+curProc).empty();
+          $('#td-pot-blt-'+curProc).append((curTimeBln).toFixed(0));
+
+          countDataTot();
+        }
+
+        function countDataTot(){
+          let curTotss = 0;
+          let curTotrej = 0;
+          let curIdh = 0;
+          let curCount = 0;
+          let curTotppm = 0;
+          $('[id^=ss-]').each(function (e){
+            e.preventDefault;
+            // console.log($(this).val());
+            curTotss += Number($(this).val());
+
+            let curSs = 0;
+            let curRej = 0;
+            let curTot = 0;
+            curSs = $('#ss-' + $(this).attr('data-bs-proc')).val();
+            curRej = $('#rej-' + $(this).attr('data-bs-proc')).val();
+            if (curSs == null || curSs == 0 || curRej == null || curRej == 0) {
+              curTot = 0;
+              curTotppm = 0;
+            } else {
+              curTot = (curRej/curSs)*1000;
+              curTotppm += Number(curTot);
+            }
+            curIdh = $(this).attr('data-bs-idh');
+            curCount = $(this).attr('data-bs-count');
+          });
+          
+          let avgstyle = '';
+          if (curTotppm > 50 ) {
+            avgstyle = 'text-danger fw-bold';
+          } else {
+            avgstyle = 'text-success fw-bold';
+          }
+
+          if (curTotppm == null || curTotppm == 0) {
+            if (ctdTotavg == null || ctdTotavg == 0) {
+              $('#tdh-avg').empty();
+              $('#tdh-avg').removeClass('text-danger');
+              $('#tdh-avg').append("-");
+
+              $('#td-avgh-' + curIdh).empty();
+              $('#td-avgh-' + curIdh).removeClass('text-danger');
+              $('#td-avgh-' + curIdh).append("-");
+            } else {
+              $('#tdh-avg').empty();
+              $('#tdh-avg').append(((ctdTotavg).toFixed(0)),"K");
+              $('#tdh-avg').addClass(avgstyle);
+
+              $('#td-avgh-' + curIdh).empty();
+              $('#td-avgh-' + curIdh).append(((ctdTotavg).toFixed(0)),"K");
+              $('#td-avgh-' + curIdh).addClass(avgstyle);
+            }
+          } else {
+            $('#tdh-avg').empty();
+            $('#tdh-avg').append(((curTotppm/curCount).toFixed(0)),"K");
+            $('#tdh-avg').addClass(avgstyle);
+
+            $('#td-avgh-' + curIdh).empty();
+            $('#td-avgh-' + curIdh).append(((curTotppm/curCount).toFixed(0)),"K");
+            $('#td-avgh-' + curIdh).addClass(avgstyle);
+          }
+
+          let curTot = 0;
+          $('[id^=td-pot-blt-]').each(function (e){
+            e.preventDefault;            
+            //console.log(Number($(this).html()));
+            curTot += Number($(this).html());            
+          });
+          
+          $('#td-sum-timem').empty();
+          $('#td-sum-timem').append(curTot);
+
+          $('#td-sum-timeh').empty();
+          $('#td-sum-timeh').append((curTot/60).toFixed(2));
+        }
+
+        function countDataSim(){
+          let curFc = Number($('#tdh-fch').html());
+          let curEf = Number($('#txt-sim-eff').val());
+          let curHc = Number($('#txt-sim-hc').val());
+          let curWh = Number($('#txt-sim-wh').val());
+          let curTr = curHc*curWh/curFc*1000*curEf/100;
+          let curTt = 3600*curWh/curTr;
+          let curTh = curTr/curWh;
+          //console.log(curTr + '-' + curTt + '-' + curTh);
+
+          let curAvgend = 0;
+          $('[id^=c_stat-]').each(function (e){
+            e.preventDefault;
+            let curProc = $(this).attr('data-bs-proc_dc');
+            curAvgend += Number($('#c_stat-' + curProc).val());
+          });
+
+          $('#tdh-avg-end').empty();
+          $('#tdh-avg-end').append((((curAvgend/5)*1000).toFixed(0)),"K");
+
+          //set value
+          $('#span-eff').empty();
+          $('#span-eff').append(curEf + '%');
+
+          $('#tdh-tar').empty();
+          $('#tdh-tar').append(curTr.toFixed(0));
+          $('#tdh-tt').empty();
+          $('#tdh-tt').append(curTt.toFixed(0));
+          $('#tdh-th').empty();
+          $('#tdh-th').append(curTh.toFixed(0));
+          
+          $('[id^=td-det-cbt-]').each(function (){
+            let curPrc = $(this).attr('data-bs-proc');
+            let curCbt = Number($(this).html());
+            let curEfc = 3600/(curCbt*(curEf/100));
+            let curEft = 3600/curEfc;
+
+            $('#td-det-efc-' + curPrc).empty();
+            $('#td-det-efc-' + curPrc).append(curEfc.toFixed(0));
+            $('#td-det-eft-' + curPrc).empty();
+            $('#td-det-eft-' + curPrc).append(curEft.toFixed(0));
+            //console.log(curEfc +'-'+ curEft);
+            countData(curPrc);
+          });
+        }
+        //console.log(htmlData);
+      }
+      
+      $('#nav-cnt-header').click(function (e){
+        e.preventDefault();
+        $('#nav-men-list').removeClass('d-none');
+        $('#nav-cnt-header').addClass('d-none');
+        $('#div-data-detail').addClass('d-none');
+        $('#filter-list').removeClass('d-none');
+        $('#div-data-header').removeClass('d-none');
+      });
+
+      $('input[name="date"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        locale: {
+          format: 'YYYY-MM-DD'
+        }
+      });
+
+      // $("#date").change(function (e) { 
+      //   e.preventDefault();
+      //   $('#detail-list').addClass('d-none');
+      //   $('#lot-loader').removeClass('d-none');
+      //   fetchData('view-detail-list', setUrlParam(1));
+      // });
+
+      $("#unit").change(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+
+      $("#line").change(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+
+      $("#group").change(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+
+      $("#style").keyup(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+     
+      $("#refresh").click(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+         
+      // ############################################ 
+      // General
+      // ############################################
+      //first load data
+      fetchData('view-detail-list', setUrlParam(1));
+
+      $("#nav-prd-list").click(function(){
+        setView('view-detail-list');
+      });
+      
+      setInterval(() => {
+        //$('#accepted-list').addClass('d-none');
+        //$('#lot-loader').removeClass('d-none');
+        //fetchData('view-detail-list', setUrlParam(1));
+      }, 30000);
+
+    });
+  </script>
+</body>
+</html>
