@@ -145,81 +145,12 @@
             <li class="nav-item">
               <a class="nav-link active" href="#" id="tab-d"><span class="far fa-file-alt"></span> Detail Analisys</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#" id="tab-s"><span class="far fa-file-alt"></span> Count Summary</a>
-            </li> -->
           </ul>
         </div>
       </div> 
       <div id="detail-list" class="row mt-2">
         <div class="col">                   
           <div class="accordion accordion-flush" id="div-data-detail">
-            <!-- <div class="accordion-item">
-              <table class="table accordion-header">
-                <tbody>
-                  <tr class="align-middle text-start">
-                    <td class="fw-bold" style="width:40px;">1.</td>
-                    <td class="fw-bold">F.TOWEL JJB43</td>
-                    </td>
-                    <td style="width:80px;">
-                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-1" aria-expanded="false" aria-controls="flush-collapse-1">
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> -->
-            <!-- <div id="flush-collapse-1" class="accordion-collapse collapse" aria-labelledby="flush-heading-1" data-bs-parent="#div-data-detail">
-              <div class="table-responsive">
-                <table class="table table-sm">
-                  <thead>
-                    <tr class="align-middle table-light text-center fw-bold">
-                      <td>No</td>
-                      <td>Date</td>
-                      <td>Unit</td>
-                      <td>Line</td>
-                      <td>Group</td>
-                      <td>Leader</td>
-                      <td>Time Balance</td>
-                      <td>By</td>
-                      <td>Act</td>
-                    </tr>                    
-                  </thead>
-                  <tbody>
-                    <tr class="align-middle text-center">
-                      <td>1</td>
-                      <td>2025-06-17</td>
-                      <td>A</td>
-                      <td class="text-start">LINE 1</td>
-                      <td>C</td>
-                      <td class="text-start">NOVY</td>                      
-                      <td>-98</td>
-                      <td class="text-start">MARIA</td>
-                      <td>
-                        <button id="btn-det-1" data-bs-id="122" class="btn btn-sm btn-outline-success">
-                          <span class="fas fa-search"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr class="align-middle text-center">
-                      <td>2</td>
-                      <td>2025-06-16</td>
-                      <td>A</td>
-                      <td class="text-start">LINE 2</td>
-                      <td>C</td>
-                      <td class="text-start">SENDY</td>                      
-                      <td>-30</td>
-                      <td class="text-start">MARIA</td>
-                      <td>
-                        <button id="btn-det-1" data-bs-id="122" class="btn btn-sm btn-outline-success">
-                          <span class="fas fa-search"></span>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -656,17 +587,23 @@
       
       //detail list
       function setListDet(result){
-        let htmlData = '', htmlHead = '', htmlForm = '', htmlPart = '', htmlStg = '', incRow = 1, incSs = 1;
-        let ctdDate='', ctdPart='', ctdPartd='', ctdLine='', ctdLined='';
-        let ctdAvg = 0, ctdTotavg = 0,  ctdAvgend = 0, ctdSs = 0, ctdRej = 0, ctdSeam = '', ctdSpi = '', ctdDim = '', ctdOth = '', ctdAct = '';
-        let ctdByx = '', ctdStg = '', ctdGroup='', ctdId = '', curFlag = '';
-        let totBlTime = 0, totRej = 0, totSs = 0, totAvg = 0;
+        let htmlData = '', htmlHead = '', htmlForm = '', incRow = 1;
+        let htmlDown = '';
+
+        let ctdDate='', ctdPart='', ctdPartd='', ctdLine='', ctdLined='', ctdFch='', ctdEff='', ctdHc='', ctdWh='', ctdTar='', ctdTt='', ctdTh;
+        let ctdLead = '', ctdGroup='', ctdId = '', curFlag = '';
+        let totBlTime = 0;
         htmlHead += `
         <div class="d-flex">
-          <table class="table me-3">
+          <table class="table" style="width: 45%;">
             <tbody class="align-middle">
               <tr>
-                <td class="table-primary">Style No</td>
+                <td class="w-25 table-primary">Date</td>
+                <td class="table-primary" style="width:10px">:</td>
+                <td id="tdh-date">3</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Part desc</td>
                 <td class="table-primary">:</td>
                 <td id="tdh-part">3</td>
               </tr>
@@ -675,271 +612,350 @@
                 <td class="table-primary">:</td>
                 <td id="tdh-line">3</td>
               </tr>
-              <tr>
-                <td class="table-primary">Stage</td>
-                <td class="table-primary">:</td>
-                <td id="tdh-stg">PP/PS</td>
-              </tr>
             </tbody>
           </table>
           <table class="table">
-            <tbody class="align-middle">
+            <tbody class="align-middle text-center">
               <tr>
-                <td class="table-primary">Date</td>
-                <td class="table-primary">:</td>
-                <td id="tdh-date" data-bs-id="">3</td>
+                <td colspan="8" class="text-start table-primary">SIMULASI</td>
+              </tr>
+              <tr class="table-light">
+                <td>FCH</td>
+                <td>EFF</td>
+                <td>HC</td>
+                <td>WH</td>
+                <td>TARGET</td>
+                <td>TT</td>
+                <td>T/H</td>
+                <td>...</td>
               </tr>
               <tr>
-                <td class="table-primary">Review By</td>
-                <td class="table-primary">:</td>
-                <td id="tdh-byx">Bimo</td>
-              </tr>
-              <tr>
-                <td class="table-primary">Average PPM (Inline)</td>
-                <td class="table-primary">:</td>
-                <td id="tdh-avg">(Reject/Sample Size)*1000k</td>
-              </tr>
-              <tr>
-                <td class="table-primary">Average PPM (Endline)</td>
-                <td class="table-primary">:</td>
-                <td id="tdh-avg-end">(Reject/Sample Size)*1000k</td>
+                <td id="tdh-fch" data-bs-id="">1</td>
+                <td><input type="number" class="form-control form-control text-center" id="txt-sim-eff" name="txt-sim-eff" min="1" max="200" value="" disabled readonly></td>
+                <td><input type="number" class="form-control form-control text-center" id="txt-sim-hc" name="txt-sim-hc" min="1" max="200" value="" disabled readonly></td>
+                <td><input type="number" class="form-control form-control text-center" id="txt-sim-wh" name="txt-sim-wh" min="1" max="200" value="" disabled readonly></td>
+                <td id="tdh-tar">8</td>
+                <td id="tdh-tt">9</td>
+                <td id="tdh-th">10</td>
+                <td>
+                  <button type="button" id="download-det" class="btn btn-sm btn-outline-secondary">
+                    <span class="fas fa-file-download"></span>
+                  </button>  
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
         `;
+
+        htmlDown += `
+          <table class="table table-sm d-none" id="table-det-cap">
+            <thead>
+              <tr class="align-middle text-center table-success">
+                <th rowspan="2">Process</th>
+                <th rowspan="2">FCH</th>
+                <th colspan="2">CBS</th>
+                <th colspan="2">Target EFF(<span id="span-eff">100%</span>)</th>
+                <th rowspan="2">Operator name</th>
+                <th colspan="2">Actual CT</th>
+                <th colspan="3">Pot. Capacity</th>
+                <th rowspan="2">Bln. Qty</th>
+                <th rowspan="2">Opr. Need</th>
+                <th rowspan="2">Bln. Time(m)</th>
+              </tr>
+              <tr class="align-middle text-center table-success">
+                <th>Tar</th>
+                <th>CT</th>
+                <th>Jam</th>
+                <th>CT</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+        `; 
+
+        htmlData += `
+          <table class="table table-sm">
+            <thead>
+              <tr class="align-middle text-center table-success">
+                <th rowspan="2">Process</th>
+                <th rowspan="2">FCH</th>
+                <th colspan="2">CBS</th>
+                <th colspan="2">Target EFF(<span id="span-eff">100%</span>)</th>
+                <th rowspan="2">Operator name</th>
+                <th colspan="2">Actual CT</th>
+                <th colspan="3">Pot. Capacity</th>
+                <th rowspan="2">Bln. Qty</th>
+                <th rowspan="2">Opr. Need</th>
+                <th rowspan="2">Bln. Time(m)</th>
+              </tr>
+              <tr class="align-middle text-center table-success">
+                <th>Tar</th>
+                <th>CT</th>
+                <th>Jam</th>
+                <th>CT</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
         
         if (result.empty == undefined) {
-          for (let key in result){
+          for (let key in result){  
+            
             if (key == 0) {
-              ctdId = result[key]['idx'];
+              ctdId=result[key]['idx'];
               ctdDate = result[key]['datex'];
-              ctdLine = result[key]['linex'];
-              ctdLined = result[key]['linedx'];
-              ctdByx = result[key]['byx'];
-              ctdStg = result[key]['stg'];
-              ctdSs = result[key]['ss'];
-              ctdRej = result[key]['rej'];
-              ctdSeam = result[key]['seam'];
-              ctdSpi = result[key]['spi'];
-              ctdDim = result[key]['dim'];
-              ctdOth = result[key]['oth'];
-              ctdAct = result[key]['act'];
-              ctdGroup = result[key]['groupx'];
               ctdPart = result[key]['partx'];
               ctdPartd = result[key]['partdx'];
+              ctdLine = result[key]['linex'];
+              ctdLined = result[key]['linedx'];
+              ctdFch = result[key]['pfchx'];
+              ctdEff = result[key]['effx'];
+              ctdHc = result[key]['hcx'];
+              ctdWh = result[key]['whx'];
+              ctdTar = result[key]['tqtyx'];
+              ctdTt = result[key]['ttx'];
+              ctdTh = result[key]['thx'];
+              ctdLead = result[key]['leadx'];
+              ctdGroup = result[key]['groupx'];
             }
-            totSs += Number(result[key]['ss']);
-            totRej += Number(result[key]['rej']);
-            
-            // console.log(totSs);
-            // console.log(totRej);
-            // console.log(ctdAvg);
-            // console.log(totAvg);
 
             if (curFlag != result[key]['pflagx']){
               if (result[key]['pflagx'] == 'CBS'){
                 htmlData += `
-                <span>Sewing Process (Inline)</span>
-                <table class="table table-sm">
-                  <thead>
-                    <tr class="align-middle text-center table-success">
-                      <th rowspan="2">Process</th>
-                      <th rowspan="2" style="width:75px">Sample Size</th>
-                      <th rowspan="2" style="width:75px">Reject</th>
-                      <th colspan="4">Result</th>
-                      <th rowspan="2">Action</th>
-                    </tr>
-                    <tr class="align-middle text-center table-success">
-                      <th>SEAM</th>
-                      <th>SPI</th>
-                      <th>DIMENTION</th>
-                      <th>OTHERS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
                   <tr class="align-middle text-start">
-                    <td colspan="8" class="table-warning">CBS process</td>
+                    <td colspan="17" class="table-warning">CBS process</td>
                   </tr>
                 `;
               } else {
                 htmlData += `
-                <table class="table table-sm">
-                  <span>Finished Costume (Endline)</span>
-                  <thead>
-                    <tr class="align-middle text-center table-success">
-                      <th>No</th>
-                      <th>Aesthetic</th>
-                      <th>Function</th>
-                      <th>Dimention</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                  <tr class="align-middle text-start">
+                    <td colspan="17" class="table-warning">Additional process</td>
+                  </tr>
                 `;
               }
-            }            
-            // let tdSumColor = '';
-            // if (Number(result[key]['tpoprct']) < Number(result[key]['thx'])) {
-            //   if (Number(result[key]['oprct1x']) > 0 ) {
-            //     tdSumColor = 'table-danger';
-            //   }
-            // }
+              
+            }
+            
+            let tdSumColor = '';
+            if (Number(result[key]['tpoprct']) < Number(result[key]['thx'])) {
+              if (Number(result[key]['oprct1x']) > 0 ) {
+                tdSumColor = 'table-danger';
+              }
+            }
 
-            // let tdSumColorBl = '';
-            // if (Number(result[key]['oprblx']) < 0) {
-            //   if (Number(result[key]['oprct1x']) > 0 ) {
-            //     tdSumColorBl = 'table-danger';
-            //   }
-            // }
+            let tdSumColorBl = '';
+            if (Number(result[key]['oprblx']) < 0) {
+              if (Number(result[key]['oprct1x']) > 0 ) {
+                tdSumColorBl = 'table-danger';
+              }
+            }
+            
 
             if (result[key]['pflagx'] == 'CBS') {
-              if (result[key]['ss'] == null || result[key]['ss'] == 0 || result[key]['rej'] == null || result[key]['rej'] == 0) {
-                ctdAvg = 0;
-                if (ctdTotavg == null || ctdTotavg == 0) {
-                  ctdTotavg = 0;
-                } else {
-                  ctdTotavg = Number(result[key]['totavgppm']);
-                }
-              } else {
-                ctdAvg += Number(result[key]['avgppm']);
-                ctdTotavg = Number(result[key]['totavgppm']);
-              }
+
               htmlData += `
-                <tr class="align-middle text-start" id="row-data-${result[key]['idx']}">
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
                   <td class="">${result[key]['procdx']}<br><span class="small">M/C: ${result[key]['mcx']}</span></td>
-                  <td class="text-end">
-                    <input type="number" class="form-control form-control text-center"
-                    data-bs-fl="D"
-                    data-bs-proc="${result[key]['procx']}"
-                    data-bs-idh="${result[key]['idx']}"
-                    data-bs-count="${incRow}"
-                    id="ss-${result[key]['procx']}" name="ss-${result[key]['procx']}" min="1" max="9999" value="${result[key]['ss']}">
-                  </td>
-                  <td class="text-end">
-                    <input type="number" class="form-control form-control text-center"
-                    data-bs-fl="D"
-                    data-bs-proc="${result[key]['procx']}"
-                    data-bs-idh="${result[key]['idx']}"
-                    data-bs-count="${incRow}"
-                    id="rej-${result[key]['procx']}" name="rej-${result[key]['procx']}" min="1" max="9999" value="${result[key]['rej']}">
-                  </td>
-                  <td class="" style="width:90px">
-                    <input type="text" class="form-control form-control"
-                    data-bs-fl="D"
-                    data-bs-proc="${result[key]['procx']}"
-                    name="seam-${result[key]['procx']}" id="seam-${result[key]['procx']}" value="${result[key]['seam']}">                
-                  </td>
-                  <td class="" style="width:90px">
-                    <input type="text" class="form-control form-control"
-                    data-bs-fl="D"
-                    data-bs-proc="${result[key]['procx']}"
-                    name="spi-${result[key]['procx']}" id="spi-${result[key]['procx']}" value="${result[key]['spi']}">                
-                  </td>
+                  <td class="text-end" id="td-det-fch-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">${result[key]['fchx']}</td>
+                  <td class="text-end" id="td-det-cbt-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">${result[key]['cbstx']}</td>
+                  <td class="text-end" id="td-det-cbc-${result[key]['procx']}">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light" id="td-det-eft-${result[key]['procx']}">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light" id="td-det-efc-${result[key]['procx']}">${result[key]['effctx']}</td>
                   <td class="">
-                    <input type="text" class="form-control form-control"
-                    data-bs-fl="D"
-                    data-bs-proc="${result[key]['procx']}"
-                    name="dim-${result[key]['procx']}" id="dim-${result[key]['procx']}" value="${result[key]['dim']}">                
-                  </td>
-                  <td class="">
-                    <input type="text" class="form-control form-control"
-                    data-bs-fl="D"
-                    data-bs-proc="${result[key]['procx']}"
-                    name="oth-${result[key]['procx']}" id="oth-${result[key]['procx']}" value="${result[key]['oth']}">                
-                  </td>
-                  <td class="">
-                    <textarea type="text" class="form-control form-control"
+                    <input type="text" class="form-control form-control" 
                       data-bs-fl="D"
-                      data-bs-proc="${result[key]['procx']}"
-                      name="act-${result[key]['procx']}" id="act-${result[key]['procx']}" value="${result[key]['act']}">
-                    </textarea>
+                      data-bs-tt="${result[key]['ttx']}" 
+                      data-bs-th="${result[key]['thx']}" 
+                      data-bs-proc="${result[key]['procx']}" 
+                      name="txtopr-${result[key]['procx']}" id="txtopr-${result[key]['procx']}" value="${result[key]['oprx']}" disabled readonly>                
                   </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end"
+                    data-bs-fl="D" 
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra1-${result[key]['procx']}" name="txtopra1-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct1x']}" disabled readonly>
+                  </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end"
+                    data-bs-fl="D" 
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra2-${result[key]['procx']}" name="txtopra2-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct2x']}" disabled readonly>
+                  </td>
+                  <td class="text-end" id="td-pot-op1-${result[key]['procx']}">${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-op2-${result[key]['procx']}">${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}" id="td-pot-opt-${result[key]['procx']}">${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}" id="td-pot-opb-${result[key]['procx']}">${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-opn-${result[key]['procx']}">${result[key]['oprnedx']}</td>
+                  <td class="text-end" id="td-pot-blt-${result[key]['procx']}">${result[key]['bltmx']}</td>
+                </tr>
+              `;
+
+              htmlDown += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
+                  <td class="">${result[key]['procdx']}<br><span class="small">M/C: ${result[key]['mcx']}</span></td>
+                  <td class="text-end">${result[key]['fchx']}</td>
+                  <td class="text-end">${result[key]['cbstx']}</td>
+                  <td class="text-end">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light">${result[key]['effctx']}</td>
+                  <td class="">
+                    ${result[key]['oprx']}               
+                  </td>
+                  <td class="text-end">
+                    ${result[key]['oprct1x']}
+                  </td>
+                  <td class="text-end">
+                   ${result[key]['oprct2x']}
+                  </td>
+                  <td class="text-end" >${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end" >${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}">${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}">${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end">${result[key]['oprnedx']}</td>
+                  <td class="text-end">${result[key]['bltmx']}</td>
                 </tr>
               `;
             } else {
-              let c_stat = '';
-              if (result[key]['c_stat'] == null || result[key]['c_stat'] == "null") {
-                c_stat = `
-                  <option value="0">Accept</option>
-                  <option value="1">Reject</option>
-                `;
-              } else if (result[key]['c_stat'] == '0') {
-                c_stat = `
-                  <option value="0" selected>Accept</option>
-                  <option value="1">Reject</option>
-                `;
-              } else {
-                c_stat = `
-                  <option value="0">Accept</option>
-                  <option value="1" selected>Reject</option>
-                `;
-              }
+              // <input type="number" class="form-control form-control-sm text-end" 
+              //       data-bs-tt="${result[key]['ttx']}" 
+              //       data-bs-th="${result[key]['thx']}"
+              //       data-bs-proc="${result[key]['procx']}" 
+              //       id="txtafch-${result[key]['procx']}" name="txtafch-${result[key]['procx']}" min="1" max="9999" value="${result[key]['fchx']}">
 
-              ctdAvgend += Number(result[key]['c_stat']);
-              // console.log(ctdAvgend);
-
-              // if (ctdAvgend == 0) {
-              //   ctdAvgend = 0;
-              // } else {
-              //   ctdAvgend = Number(result[key]['c_stat']);
-              // }
               htmlData += `
-                <tr class="align-middle text-start" id="row-data-${result[key]['idx']}">
-                  <td class="text-center">${incSs}</td>
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
                   <td class="">
-                    <input type="text" class="form-control form-control"
-                      data-bs-fl="DC"
-                      data-bs-proc_dc="${result[key]['procx']}"
-                      name="c_aes-${result[key]['procx']}" id="c_aes-${result[key]['procx']}" value="${result[key]['c_aes']}">                
+                    <input type="text" name="txtaprc-${result[key]['procx']}" 
+                    id="txtaprc-${result[key]['procx']}"
+                    data-bs-fl="E"
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}"
+                    class="form-control" value="${result[key]['procdx']}" disabled readonly>
                   </td>
+                  <td class="text-end" id="td-det-fch-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">
+                    ${result[key]['fchx']}
+                  </td>
+                  <td class="text-end" id="td-det-cbt-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">${result[key]['cbstx']}</td>
+                  <td class="text-end" id="td-det-cbc-${result[key]['procx']}">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light" id="td-det-eft-${result[key]['procx']}">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light" id="td-det-efc-${result[key]['procx']}">${result[key]['effctx']}</td>
                   <td class="">
-                    <input type="text" class="form-control form-control"
-                      data-bs-fl="DC"
-                      data-bs-proc_dc="${result[key]['procx']}"
-                      name="c_func-${result[key]['procx']}" id="c_func-${result[key]['procx']}" value="${result[key]['c_func']}">                
+                    <input type="text" class="form-control form-control" 
+                      data-bs-fl="E"
+                      data-bs-tt="${result[key]['ttx']}" 
+                      data-bs-th="${result[key]['thx']}" 
+                      data-bs-proc="${result[key]['procx']}" 
+                      name="txtopr-${result[key]['procx']}" id="txtopr-${result[key]['procx']}" value="${result[key]['oprx']}" disabled readonly>                
                   </td>
-                  <td class="">
-                    <input type="text" class="form-control form-control"
-                      data-bs-fl="DC"
-                      data-bs-proc_dc="${result[key]['procx']}"
-                      name="c_dim-${result[key]['procx']}" id="c_dim-${result[key]['procx']}" value="${result[key]['c_dim']}">                
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end" 
+                    data-bs-fl="E"
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra1-${result[key]['procx']}" name="txtopra1-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct1x']}" disabled readonly>
                   </td>
-                  <td class="">
-                    <select class="form-control form-control"
-                      data-bs-fl="DC"
-                      data-bs-proc_dc="${result[key]['procx']}"
-                      name="c_stat-${result[key]['procx']}" id="c_stat-${result[key]['procx']}">
-                        ${c_stat}
-                    </select>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end"
+                    data-bs-fl="E" 
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra2-${result[key]['procx']}" name="txtopra2-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct2x']}" disabled readonly>
                   </td>
+                  <td class="text-end" id="td-pot-op1-${result[key]['procx']}">${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-op2-${result[key]['procx']}">${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}" id="td-pot-opt-${result[key]['procx']}">${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}" id="td-pot-opb-${result[key]['procx']}">${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-opn-${result[key]['procx']}">${result[key]['oprnedx']}</td>
+                  <td class="text-end" id="td-pot-blt-${result[key]['procx']}">${result[key]['bltmx']}</td>
                 </tr>
               `;
-              incSs++;
-              // <td class="">
-              //   <input type="text" class="form-control form-control"
-              //     data-bs-fl="DC"
-              //     data-bs-proc_dc="${result[key]['procx']}"
-              //     name="c_stat-${result[key]['procx']}" id="c_stat-${result[key]['procx']}" value="${result[key]['c_stat']}">                
-              // </td>
+
+              htmlDown += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
+                  <td class="">
+                    ${result[key]['procdx']}
+                  </td>
+                  <td class="text-end" id="td-det-fch-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">
+                    ${result[key]['fchx']}
+                  </td>
+                  <td class="text-end">${result[key]['cbstx']}</td>
+                  <td class="text-end">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light">${result[key]['effctx']}</td>
+                  <td class="">
+                    ${result[key]['oprx']}               
+                  </td>
+                  <td class="text-end">
+                    ${result[key]['oprct1x']}
+                  </td>
+                  <td class="text-end">
+                    ${result[key]['oprct2x']}
+                  </td>
+                  <td class="text-end">${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end">${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}" >${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}" >${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end">${result[key]['oprnedx']}</td>
+                  <td class="text-end">${result[key]['bltmx']}</td>
+                </tr>
+              `;
             }
-            incRow++;
+
+            incRow++; 
             totBlTime += Number(result[key]['bltmx']);
             curFlag = result[key]['pflagx'];
           }
         }
 
         htmlData += `
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Minutes) :</td>
+                <td id="td-sum-timem"></td>
+              </tr>
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Hours) :</td>
+                <td id="td-sum-timeh"></td>
+              </tr>
             </tbody>
           </table>
         `;
 
-        $('.modal-dialog').removeClass('modal-xl'); 
-        $('.modal-dialog').addClass('modal-fullscreen');
+        htmlDown += `
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Minutes) :</td>
+                <td id="td-sum-timem"></td>
+              </tr>
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Hours) :</td>
+                <td id="td-sum-timeh"></td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+
+        $('.modal-dialog').removeClass('modal-xl');
+        $('.modal-dialog').addClass('modal-fullscreen')
         $('.modal-title').empty();
-        $('.modal-title').append('Detail Review');
+        $('.modal-title').append('Detail Capacity');
         $('.modal-body').empty();
-        $('.modal-body').append(htmlHead + htmlData);
+        $('.modal-body').append(htmlHead + htmlData + htmlDown);
         $('#btn-modal-yes').addClass('d-none');
         $('#btn-modal-no').addClass('d-none');
         $('#btn-save-yes').addClass('d-none');
@@ -948,346 +964,211 @@
 
         //set header
 
-        // htmlPart +=`
-        //   <div class="input-group text-start">
-        //     <span class="input-group-text">${ctdPart}</span>
-        //     <span class="input-group-text">${ctdPartd}</span>
-        //   </div>
-        // `;
-        // <span class="input-group-text">${ctdPart}</span>
-        // <span class="input-group-text">${ctdPartd}</span>
-
-        htmlPart = `
-          ${ctdPart} | ${ctdPartd}
-        `;
-        // ${ctdPart} - ${ctdPartd}
-
-        htmlForm +=`
+        let htmlPart = `
           <div class="input-group text-start">
-            <span class="input-group-text">${ctdLined}</span>
-            <span class="input-group-text">${ctdGroup}</span>
+            <span class="input-group-text">${ctdPart}</span>
+            <span class="input-group-text">${ctdPartd}</span>
           </div>
         `;
 
-          // <span class="input-group-text">${ctdLined}</span>
-          // <span class="input-group-text">${ctdGroup}</span>
-          // <span class="input-group-text">${ctdLead}</span>
+        htmlPart = `
+          ${ctdPart} - ${ctdPartd}
+        `;
 
-        // htmlStg +=`
-        //   <div class="input-group text-start">
-        //     <span class="input-group-text">${ctdStg}</span>
-        //   </div>
-        // `;
+        htmlForm +=`
+          <div class="input-group input-group-sm text-start">
+            <span class="input-group-text">${ctdLined}</span>
+            <span class="input-group-text">${ctdGroup}</span>
+            <span class="input-group-text">${ctdLead}</span>
+          </div>
+        `;
         
         $('#tdh-date').empty();
         $('#tdh-date').append(ctdDate);
-        $('#tdh-date').attr('data-bs-id', ctdId);
-        $('#tdh-stg').empty();
-        $('#tdh-stg').append(ctdStg);
-        $('#tdh-byx').empty();
-        $('#tdh-byx').append(ctdByx);
         $('#tdh-part').empty();
         $('#tdh-part').append(htmlPart);
         $('#tdh-line').empty();
         $('#tdh-line').append(htmlForm);
+        $('#tdh-fch').empty();
+        $('#tdh-fch').append(ctdFch);
+        $('#tdh-fch').attr('data-bs-id', ctdId);
 
-        let avgstyle = '';
-        if (ctdTotavg > 50) {
-          avgstyle = 'text-danger fw-bold';
+        $('#txt-sim-eff').val(Number(ctdEff)*100);
+        $('#txt-sim-hc').val(ctdHc);
+        $('#txt-sim-wh').val(ctdWh);
+
+        $('#tdh-tar').empty();
+        $('#tdh-tar').append(ctdTar);
+        $('#tdh-tt').empty();
+        $('#tdh-tt').append(ctdTt);
+        $('#tdh-th').empty();
+        $('#tdh-th').append(ctdTh);
+
+        let styleBl = '';
+        if (totBlTime < 0) {
+          styleBl="table-danger";
         } else {
-          avgstyle = 'text-success fw-bold';
+          styleBl="table-warning";
         }
 
-        let curIdh = 0;
-        let curCount = 0;
-        $('[id^=ss-]').each(function (e){
+        $('#td-sum-timem').empty();
+        $('#td-sum-timem').append(totBlTime);
+        $('#td-sum-timeh').empty();
+        $('#td-sum-timeh').append((totBlTime/60).toFixed(2));
+        $('#td-sum-timem').addClass(styleBl);
+        $('#td-sum-timeh').addClass(styleBl);
+        $('#span-eff').empty();
+        $('#span-eff').append((ctdEff*100).toFixed(0) + '%');
+
+        //EFF
+        $('#txt-sim-eff').change(function (e){
           e.preventDefault;
-          curIdh = $(this).attr('data-bs-idh');
-          curCount = $(this).attr('data-bs-count');
+          countDataSim();
+
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'H',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: 0,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProcOpn:'',
+            rProcOp1:'',
+            rProcOp2:''            
+          });
+          fetchData('upd-list-det', urlPar);
         });
 
-        if (ctdAvg == null || ctdAvg == 0) {
-          if (ctdTotavg == null || ctdTotavg == 0) {
-            $('#tdh-avg').empty();
-            $('#tdh-avg').removeClass('text-danger');
-            $('#tdh-avg').append("-");
+        $('#txt-sim-hc').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'H',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: 0,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProcOpn:'',
+            rProcOp1:'',
+            rProcOp2:''            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
 
-            $('#td-avgh-' + curIdh).empty();
-            $('#td-avgh-' + curIdh).removeClass('text-danger');
-            $('#td-avgh-' + curIdh).append("-");
-          } else {
-            $('#tdh-avg').empty();
-            $('#tdh-avg').append(((ctdTotavg).toFixed(0)),"K");
-            $('#tdh-avg').addClass(avgstyle);
+        $('#txt-sim-wh').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'H',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: 0,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProcOpn:'',
+            rProcOp1:'',
+            rProcOp2:''            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
 
-            $('#td-avgh-' + curIdh).empty();
-            $('#td-avgh-' + curIdh).append(((ctdTotavg).toFixed(0)),"K");
-            $('#td-avgh-' + curIdh).addClass(avgstyle);
+        //formula
+        $('[id^=txtopr-]').change(function (e){
+          e.preventDefault;
+          let curProc = $(this).attr('data-bs-proc');
+          let curFlag = $(this).attr('data-bs-fl');
+          let curProcd = '';
+          if (curFlag == 'E'){
+            curProcd = $('#txtaprc-' + curProc).val();
           }
-        } else {
-          $('#tdh-avg').empty();
-          $('#tdh-avg').append(((ctdAvg/curCount).toFixed(0)),"K");
-          $('#tdh-avg').addClass(avgstyle);
-
-          $('#td-avgh-' + curIdh).empty();
-          $('#td-avgh-' + curIdh).append(((ctdAvg/curCount).toFixed(0)),"K");
-          $('#td-avgh-' + curIdh).addClass(avgstyle);
-        }
-
-        let curAvgend = 0;
-        $('[id^=c_stat-]').each(function (e){
-          e.preventDefault;
-          let curProc = $(this).attr('data-bs-proc_dc');
-          curAvgend += Number($('#c_stat-' + curProc).val());
-        });
-
-        $('#tdh-avg-end').empty();
-        $('#tdh-avg-end').append((((ctdAvgend/5)*1000).toFixed(0)),"K");
-
-        $('#ss-').val(ctdSs);
-        $('#rej-').val(ctdRej);
-        $('#seam-').val(ctdSeam);
-        $('#spi-').val(ctdSpi);
-        $('#dim-').val(ctdDim);
-        $('#oth-').val(ctdOth);
-        $('#act-').val(ctdAct);
-        $('#tdh-avg-end').val();
-
-        //Sample Size
-        $('[id^=ss-]').change(function (e){
-          e.preventDefault;
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc');
           countData(curProc);
+          let urlPar = '';
           urlPar = new URLSearchParams({
-            rflag: 'D',
+            rflag: curFlag,
+            rId: $('#tdh-fch').attr('data-bs-id'),            
             rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: curProcd,
+            rProcOpn: $('#txtopr-' + curProc).val(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
           });
           fetchData('upd-list-det', urlPar);
         });
 
-        $('[name^=ss-]').change(function (e){
+        $('[id^=txtopra1-]').change(function (e){
           e.preventDefault;
-          let data_id = $(this).attr('data-bs-idh');
-          let urlPar = '';
-          urlPar = new URLSearchParams({
-            id: data_id
-          });
-          fetchData('view-list-det', urlPar);
-        });
-
-        //Rej
-        $('[id^=rej-]').change(function (e){
-          e.preventDefault;
-          let urlPar = '';
           let curProc = $(this).attr('data-bs-proc');
+          let curFlag = $(this).attr('data-bs-fl');
+          let curProcd = '';
+          if (curFlag == 'E'){
+            curProcd = $('#txtaprc-' + curProc).val();
+          }
+
           countData(curProc);
+          let urlPar = '';
           urlPar = new URLSearchParams({
-            rflag: 'D',
+            rflag: curFlag,
+            rId: $('#tdh-fch').attr('data-bs-id'),            
             rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: curProcd,
+            rProcOpn: $('#txtopr-' + curProc).val(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
           });
           fetchData('upd-list-det', urlPar);
         });
 
-        $('[name^=rej-]').change(function (e){
+        $('[id^=txtopra2-]').change(function (e){
           e.preventDefault;
-          let data_id = $(this).attr('data-bs-idh');
-          let urlPar = '';
-          urlPar = new URLSearchParams({
-            id: data_id
-          });
-          fetchData('view-list-det', urlPar);
-        });
-
-        //SEAM
-        $('[id^=seam-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
           let curProc = $(this).attr('data-bs-proc');
+          let curFlag = $(this).attr('data-bs-fl');
+          let curProcd = '';
+          if (curFlag == 'E'){
+            curProcd = $('#txtaprc-' + curProc).val();
+          }
+          countData(curProc);
+          let urlPar = '';
           urlPar = new URLSearchParams({
-            rflag: 'D',
+            rflag: curFlag,
+            rId: $('#tdh-fch').attr('data-bs-id'),            
             rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: curProcd,
+            rProcOpn: $('#txtopr-' + curProc).val(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
           });
           fetchData('upd-list-det', urlPar);
         });
 
-        //SPI
-        $('[id^=spi-]').change(function (e){
+        // additional
+        $('[id^=txtaprc-]').change(function (e){
           e.preventDefault;
-          countDataSim();
+          let curProc = $(this).html('data-bs-proc');
           let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc');
           urlPar = new URLSearchParams({
-            rflag: 'D',
+            rflag: 'E',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
             rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //DIMENTION
-        $('[id^=dim-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc');
-          urlPar = new URLSearchParams({
-            rflag: 'D',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //OTHERS
-        $('[id^=oth-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc');
-          urlPar = new URLSearchParams({
-            rflag: 'D',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //Action
-        $('[id^=act-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc');
-          urlPar = new URLSearchParams({
-            rflag: 'D',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rSs: $('#ss-' + curProc).val(),
-            rRej: $('#rej-' + curProc).val(),
-            rSeam: $('#seam-' + curProc).val(),
-            rSpi: $('#spi-' + curProc).val(),
-            rDim: $('#dim-' + curProc).val(),
-            rOth: $('#oth-' + curProc).val(),
-            rAct: $('#act-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //Aesthetic
-        $('[id^=c_aes-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc_dc');
-          urlPar = new URLSearchParams({
-            rflag: 'DC',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rAes: $('#c_aes-' + curProc).val(),
-            rFunc: $('#c_func-' + curProc).val(),
-            rC_dim: $('#c_dim-' + curProc).val(),
-            rStat: $('#c_stat-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //Function
-        $('[id^=c_func-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc_dc');
-          urlPar = new URLSearchParams({
-            rflag: 'DC',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rAes: $('#c_aes-' + curProc).val(),
-            rFunc: $('#c_func-' + curProc).val(),
-            rC_dim: $('#c_dim-' + curProc).val(),
-            rStat: $('#c_stat-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //Cus Dimention
-        $('[id^=c_dim-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc_dc');
-          urlPar = new URLSearchParams({
-            rflag: 'DC',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rAes: $('#c_aes-' + curProc).val(),
-            rFunc: $('#c_func-' + curProc).val(),
-            rC_dim: $('#c_dim-' + curProc).val(),
-            rStat: $('#c_stat-' + curProc).val()
-          });
-          fetchData('upd-list-det', urlPar);
-        });
-
-        //Status
-        $('[id^=c_stat-]').change(function (e){
-          e.preventDefault;
-          countDataSim();
-          let urlPar = '';
-          let curProc = $(this).attr('data-bs-proc_dc');
-          urlPar = new URLSearchParams({
-            rflag: 'DC',
-            rIdProc: curProc,
-            rId: $('#tdh-date').attr('data-bs-id'),
-            rAes: $('#c_aes-' + curProc).val(),
-            rFunc: $('#c_func-' + curProc).val(),
-            rC_dim: $('#c_dim-' + curProc).val(),
-            rStat: $('#c_stat-' + curProc).val()
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: $(this).val(),
+            rProcOpn: $('#txtopr-' + curProc).val(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
           });
           fetchData('upd-list-det', urlPar);
         });
@@ -1322,7 +1203,7 @@
             if ((Number(curPop1)+Number(curPop2)) != 0) {              
               $('#td-pot-opt-'+curProc).addClass('table-danger');
             }
-          } else{
+          }else{
             $('#td-pot-opt-'+curProc).removeClass('table-danger');
           }
 
@@ -1353,74 +1234,12 @@
         }
 
         function countDataTot(){
-          let curTotss = 0;
-          let curTotrej = 0;
-          let curIdh = 0;
-          let curCount = 0;
-          let curTotppm = 0;
-          $('[id^=ss-]').each(function (e){
-            e.preventDefault;
-            // console.log($(this).val());
-            curTotss += Number($(this).val());
-
-            let curSs = 0;
-            let curRej = 0;
-            let curTot = 0;
-            curSs = $('#ss-' + $(this).attr('data-bs-proc')).val();
-            curRej = $('#rej-' + $(this).attr('data-bs-proc')).val();
-            if (curSs == null || curSs == 0 || curRej == null || curRej == 0) {
-              curTot = 0;
-              curTotppm = 0;
-            } else {
-              curTot = (curRej/curSs)*1000;
-              curTotppm += Number(curTot);
-            }
-            curIdh = $(this).attr('data-bs-idh');
-            curCount = $(this).attr('data-bs-count');
-          });
-          
-          let avgstyle = '';
-          if (curTotppm > 50 ) {
-            avgstyle = 'text-danger fw-bold';
-          } else {
-            avgstyle = 'text-success fw-bold';
-          }
-
-          if (curTotppm == null || curTotppm == 0) {
-            if (ctdTotavg == null || ctdTotavg == 0) {
-              $('#tdh-avg').empty();
-              $('#tdh-avg').removeClass('text-danger');
-              $('#tdh-avg').append("-");
-
-              $('#td-avgh-' + curIdh).empty();
-              $('#td-avgh-' + curIdh).removeClass('text-danger');
-              $('#td-avgh-' + curIdh).append("-");
-            } else {
-              $('#tdh-avg').empty();
-              $('#tdh-avg').append(((ctdTotavg).toFixed(0)),"K");
-              $('#tdh-avg').addClass(avgstyle);
-
-              $('#td-avgh-' + curIdh).empty();
-              $('#td-avgh-' + curIdh).append(((ctdTotavg).toFixed(0)),"K");
-              $('#td-avgh-' + curIdh).addClass(avgstyle);
-            }
-          } else {
-            $('#tdh-avg').empty();
-            $('#tdh-avg').append(((curTotppm/curCount).toFixed(0)),"K");
-            $('#tdh-avg').addClass(avgstyle);
-
-            $('#td-avgh-' + curIdh).empty();
-            $('#td-avgh-' + curIdh).append(((curTotppm/curCount).toFixed(0)),"K");
-            $('#td-avgh-' + curIdh).addClass(avgstyle);
-          }
-
           let curTot = 0;
           $('[id^=td-pot-blt-]').each(function (e){
             e.preventDefault;            
             //console.log(Number($(this).html()));
             curTot += Number($(this).html());            
           });
-          
           $('#td-sum-timem').empty();
           $('#td-sum-timem').append(curTot);
 
@@ -1437,16 +1256,6 @@
           let curTt = 3600*curWh/curTr;
           let curTh = curTr/curWh;
           //console.log(curTr + '-' + curTt + '-' + curTh);
-
-          let curAvgend = 0;
-          $('[id^=c_stat-]').each(function (e){
-            e.preventDefault;
-            let curProc = $(this).attr('data-bs-proc_dc');
-            curAvgend += Number($('#c_stat-' + curProc).val());
-          });
-
-          $('#tdh-avg-end').empty();
-          $('#tdh-avg-end').append((((curAvgend/5)*1000).toFixed(0)),"K");
 
           //set value
           $('#span-eff').empty();
@@ -1474,8 +1283,21 @@
           });
         }
         //console.log(htmlData);
+        
+        $("#download-det").click(function(){
+          ExportToExcel('table-det-cap', 'xlsx', undefined, undefined, 'detail_capacity');
+          // console.log('test');
+        });
       }
       
+      function ExportToExcel(tableId, type, fn, dl, nm) {
+        var elt = document.getElementById(tableId);
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        return dl ?
+          XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+          XLSX.writeFile(wb, fn || (nm + '.' + (type || 'xlsx')));
+      }
+
       $('#nav-cnt-header').click(function (e){
         e.preventDefault();
         $('#nav-men-list').removeClass('d-none');
