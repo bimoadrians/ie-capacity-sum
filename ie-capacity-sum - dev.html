@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/img/logo128.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capacity analisys summary</title>
+  <link rel="stylesheet" href="assets/css/font-awesome/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/sass.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/daterangepicker.css">
+  <style>
+    /* @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap'); */
+    
+    *{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    
+    html {
+      height: -webkit-fill-available;
+      font-size: 14px;
+    }
+    
+    .bg-purple {
+      background: rgb(235,59,142);
+      background: linear-gradient(180deg, rgba(235,59,142,1) 0%, rgba(235,59,142,1) 100%);
+    }
+    
+    .text-purple {
+      background: rgb(248,2,55);
+      background: linear-gradient(90deg, rgba(248,2,55,1) 0%, rgba(248,2,156,1) 100%);
+    }
+   
+  </style>
+</head>
+<body class="d-flex flex-column h-100">
+  <header>
+    <div class="container-fluid fixed-top p-2 bg-purple text-white ">
+      <div class="d-flex justify-content-between">
+        <div class="align-self-center fw-bold"><span class="fas fa-warehouse ms-2 me-2"></span> Capacity Analisys Summary</div>
+        <div class="align-self-center">
+          <!-- <a id="nav-nav-list" href="index.html" class="btn btn-sm btn-outline-secondary"><span class="fas fa-angle-left"> Back</span></a> -->
+          <a id="nav-men-list" href="index.html" class="btn btn-sm btn-light fw-bold"><span class="fas fa-angle-left"></span> Back</a>
+          <a id="nav-cnt-header" href="#" class="btn btn-sm btn-light d-none fw-bold"><span class="fas fa-angle-left"></span> Back</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main role="main" class="flex-shrink-0 pt-5">
+    <div class="container-fluid">
+      <!-- list -->
+      <div id="filter-list" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 mt-2 ">
+        <!-- <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Date</span>
+            <input id="date" name="date" type="text" class="form-control">
+          </div>
+        </div> -->
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Unit</span>
+            <select name="unit" id="unit" class="form-select">
+              <option value="ALL">ALL</option>
+              <option value="A">MATTEL A</option>
+              <option value="B">MATTEL B</option>
+              <option value="C">MATTEL C</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Line</span>
+            <select name="line" id="line" class="form-select">
+              <option value="ALL">ALL</option>
+              <option value="1">MATTEL A</option>
+              <option value="2">MATTEL B</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Group</span>
+            <select name="group" id="group" class="form-select">
+              <option value="ALL">ALL</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="J">J</option>
+              <option value="K">K</option>
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="A3">A3</option>
+              <option value="A4">A4</option>
+              <option value="A5">A5</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="B3">B3</option>
+              <option value="B4">B4</option>
+              <option value="B5">B5</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="B3">B3</option>
+              <option value="B4">B4</option>
+              <option value="B5">B5</option>
+              <option value="C1">C1</option>
+              <option value="C2">C2</option>
+              <option value="C3">C3</option>
+              <option value="C4">C4</option>
+              <option value="C5">C5</option>
+              <option value="D1">D1</option>
+              <option value="D2">D2</option>
+              <option value="D3">D3</option>
+              <option value="D4">D4</option>
+              <option value="D5">D5</option>
+              <option value="E1">E1</option>
+              <option value="E2">E2</option>
+              <option value="E3">E3</option>
+              <option value="E4">E4</option>
+              <option value="E5">E5</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text w-25">Style</span>
+            <input id="style" name="style" type="text" class="form-control">
+            <button type="button" id="refresh" class="btn btn-outline-secondary">
+              <span class="fa fa-refresh"></span>
+            </button>
+          </div>
+        </div>        
+      </div>
+      <div id="head-list" class="row mt-3">
+        <div class="col">
+          <ul class="nav nav-tabs fw-bold">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" id="tab-d"><span class="far fa-file-alt"></span> Detail Analisys</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="detail-list" class="row mt-2">
+        <div class="col">                   
+          <div class="accordion accordion-flush" id="div-data-detail">
+          </div>
+        </div>
+      </div>
+      <!-- loader -->
+      <div id="lot-loader" class="row mt-2 d-none">
+        <div class="col">
+          <div id="loader" class="mt-3 text-center">
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-purple" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- modal dialog -->
+  <div class="modal fade" id="modalDialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Delete current lot ?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button id="btn-modal-yes" type="button" class="btn btn-warning">Yes</button>
+          <button id="btn-modal-no" type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3">
+    <div class="container-fluid fixed-bottom p-1 bg-purple text-white">
+      <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
+          <span class="small">SUI APPS V2.0 &copy; 2024 PT. Sahabat Unggul International </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap/popper.min.js"></script>
+  <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+  <script src="assets/js/moment.min.js"></script>
+  <script src="assets/js/daterangepicker.js"></script>
+  <script src="assets/js/xlsx.full.min.js"></script>
+  <script type="module">
+    import {setCookie, getCookie} from './assets/js/main.js';
+    $(document).ready(function(){
+      
+      let path = window.location.pathname;
+      let page = path.split("/").pop();
+      setCookie('pagex', page, 7);
+
+      function formatNumber(number){
+        return new Intl.NumberFormat().format(number);
+      }
+
+      let G_PRD_LINE = "'"+"XX"+"'";
+      let G_CUR_TABLE = 'table-header';
+      let G_CUR_LINE_CODE = '';
+      let G_CUR_LINE = '';
+      let G_CUR_LEAD = '';
+      let G_CUR_GROUP = '';
+      let G_CUR_PART = '';
+      let G_CUR_DESC = '';
+      
+      let linex = getCookie('linex');
+      const lineArrays = linex.split("|");
+      //console.log(lineArray);
+      
+      let i = 0;
+      let line_html = ''; let strArray = '';
+      while (i < lineArrays.length) {
+        strArray = lineArrays[i];
+        if (strArray != '') {
+        let lineAarray = strArray.split("=");
+          line_html = line_html +`
+          <option value="${lineAarray[0]}">${lineAarray[1]}</option>`;
+          G_PRD_LINE += ",'"+ lineAarray[0]+"'";
+        }
+        //console.log(strArray);
+        //console.log(lineAarray[1]);
+        i++;
+      }
+      // apend line data
+      $('#line').empty();
+      $('#line').append(line_html);
+      //console.log(line_html);
+
+      let unitx = getCookie('unitx');
+      let html_unit = '';
+      //console.log(unitx);
+      if (unitx == 'A') {
+        html_unit = `
+          <option value="ALL">ALL</option>
+          <option value="A" selected>MATTEL A</option>
+          <option value="B">MATTEL B</option>
+          <option value="C">MATTEL C</option>
+        `;
+      } else if (unitx == 'B') {
+        html_unit = `
+          <option value="ALL">ALL</option>
+          <option value="A">MATTEL A</option>
+          <option value="B" selected>MATTEL B</option>
+          <option value="C">MATTEL C</option>
+        `;
+      } else if (unitx == 'C') {
+        html_unit = `
+          <option value="ALL">ALL</option>
+          <option value="A">MATTEL A</option>
+          <option value="B">MATTEL B</option>
+          <option value="C" selected>MATTEL C</option>
+        `;
+      } else {
+        html_unit = `
+          <option value="ALL" selected>ALL</option>
+          <option value="A">MATTEL A</option>
+          <option value="B">MATTEL B</option>
+          <option value="C">MATTEL C</option>
+        `;
+      }
+      $('#unit').empty();
+      $('#unit').append(html_unit);
+
+      function sortTable(tableid, startRow, sortCol, dataType = 'string') {
+        let table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById(tableid);
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+          first, which contains table headers):*/
+          for (i = startRow; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[sortCol];
+            y = rows[i + 1].getElementsByTagName("TD")[sortCol];
+
+            //console.log(x.innerHTML.toLowerCase());
+            //check if the two rows should switch place:
+            if (dataType == 'string') {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            } else {
+              if (Number(x.innerHTML.toLowerCase()) < Number(y.innerHTML.toLowerCase())) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+
+      //load list
+      const setUrlParam = (section, data_id = '', defect_type = 'N', defect_data = '0#0') => {
+        let urlParam = "";
+        if (section == 1) {
+          urlParam = new URLSearchParams({
+            date: $("#date").val(),
+            unit: $("#unit").val(),
+            line: $("#line").val(),
+            line_all: G_PRD_LINE,
+            group: $("#group").val(),
+            style: $("#style").val()            
+          });
+        } 
+        return urlParam;
+      }
+
+      const setView = (section) =>{
+        switch(section){
+          case 'view-hour-list':
+            $('#lot-loader').addClass('d-none');
+            $('#filter-list').removeClass('d-none');
+            $('#nav-men-list').removeClass('d-none');
+          break;
+        }
+      };
+
+      const fetchData = async (section, urlParam) => {
+        try {
+          let apiSection = "";
+          if(section == 'view-detail-list'){
+            apiSection = "ie.php?section=6&" + urlParam; 
+          } else if (section == 'view-list-det'){
+            apiSection = "ie.php?section=7&" + urlParam;
+          }
+
+          let res = '';
+          if (section == 'add-detail-list') {
+            res = await fetch("assets/api/"+ apiSection, {
+              method : "POST",
+              body : urlParam
+            });
+          } else {
+            res = await fetch("assets/api/"+ apiSection, {
+              method : "GET",
+              headers: {
+                "Content-Type": "application/json"
+              }
+            });
+          }
+
+          const output = await res.json();
+          //console.log(output.auth);
+          
+          if (output.auth == 'false') {
+            location.replace("login.html");
+            return;
+          } else {
+            if(output.auth_view == 'false') {
+              let html_data = '<span class="text-danger">Anda tidak mempunyai izin untuk membuka halaman ini.</span>';
+              $('.modal-dialog').removeClass('modal-xl');
+              $('.modal-title').empty();
+              $('.modal-title').append('Error access');
+              $('.modal-body').empty();
+              $('.modal-body').append(html_data);
+              $('#btn-modal-yes').addClass('d-none');
+              $('#btn-modal-no').addClass('d-none');
+              $('.btn-close').addClass('d-none');
+              
+              $('#btn-modal-accs').remove();
+              $('.modal-footer').append('<button id="btn-modal-accs" type="button" class="btn btn-primary">Exit</button>');
+              $('#btn-modal-accs').click(function (e){
+                e.preventDefault;
+                location.replace("index.html");
+              });
+
+              $("#modalDialog").modal('show');
+
+              return;
+            }
+
+            if(output.auth_mod == 'false') {
+              
+              let html_data = '<span class="text-danger">Anda tidak mempunyai izin untuk melakukan modifikasi di halaman ini.</span>';
+              $('.modal-dialog').removeClass('modal-xl');
+
+              $('.modal-title').empty();
+              $('.modal-title').append('Invalid access');
+
+              $('.modal-body').empty();
+              $('.modal-body').append(html_data);
+
+              $('#btn-modal-yes').addClass('d-none');
+              $('#btn-modal-no').empty();
+              $('#btn-modal-no').append('Ok');
+              $('#btn-modal-no').removeClass('d-none');
+              $("#modalDialog").modal('show');
+              return;
+            }
+
+            if (section == 'view-detail-list') { // plan list
+              setDetailList(output);
+            } else if (section == 'view-list-det'){
+              setListDet(output);
+            } else {
+              console.log(output);
+            }
+          }
+
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      //daily list
+      function setDetailList(result){
+        // console.log(result);
+        let html_data = ''; let html_sep = '';
+        let timex = '';
+
+        if (result.empty == undefined) {
+          let curPart = '';
+          let incRow = 1; let incRowLine = 1; let incRowbs = 1; let incInp = 1; let incNo = 1;
+          for (let key in result){
+            let blstyle = '';
+            timex = result[key]['timex'];
+            if (Number(timex) < 0 ) {
+              blstyle = 'text-danger fw-bold';
+            } else {
+              blstyle = 'fw-bold';
+            }
+            
+            if (curPart != result[key]['partx']) {
+              if (key != 0) {
+                html_sep = `
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                `;
+              } else {
+                html_sep = ``;
+              }
+
+              html_data += html_sep + `
+                <div class="accordion-item">
+                  <table class="table table-sm accordion-header table-light" id="flush-heading-${incRowLine}">
+                    <tbody>
+                      <tr class="align-middle text-start">
+                        <td class="fw-bold" style="width:60px;">${incRowLine}.</td>
+                        <td class="fw-bold">${result[key]['partdx']}</td>
+                        <td class="fw-bold text-end" style="width:180px;"><span id="span-total-part-${incRowLine}" data-bs-span="${incRowbs}"></span></td>
+                        <td style="width:70px;">
+                          <button class="accordion-button collapsed fw-bold bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${incRowLine}" aria-expanded="false" aria-controls="flush-collapse-${incRowLine}">
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="flush-collapse-${incRowLine}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${incRowLine}" data-bs-parent="#div-data-header">
+                  <table class="table table-sm">
+                    <thead>
+                      <tr class="align-middle text-center table-light fw-bold">
+                        <td class="" scope="col">No</td>
+                        <td class="" scope="col">Date</td>
+                        <td class="" scope="col">Unit</td>
+                        <td class="" scope="col">Line</td>
+                        <td class="" scope="col">Group</td>
+                        <td class="" scope="col">Time Balance</td>
+                        <td class="" scope="col">By</td>
+                        <td class="" scope="col">Act</td>
+                      </tr>
+                    </thead>
+                    <tbody id="curCount-${incInp}">
+              `;
+              incRowLine++;
+              incRowbs++;
+              incInp++;
+              incNo = 1;
+            }
+
+            html_data += `
+              <tr>
+                <td class="text-center align-middle">${incNo}</td>
+                <td class="text-center align-middle">${result[key]['datex']}</td>
+                <td class="text-center align-middle">${result[key]['unitx']}</td>
+                <td class="text-center align-middle">${result[key]['linedx']}</td>
+                <td class="text-center align-middle">${result[key]['groupx']}</td>
+                <td id="td-timex-${result[key]['idx']}" data-bs-td="${incRowbs}" class="text-center ${blstyle}">${result[key]['timex']}</td>
+                <td class="text-center align-middle">${result[key]['byx']}</td>
+                <td class="text-center align-middle">
+                  <button id="btn-det-${incRow}"
+                    data-bs-id="${result[key]['idx']}"
+                    class="btn btn-sm btn-outline-success" >
+                    <span class="fas fa-search"></span>
+                  </button>
+                </td>
+              </tr>
+            `;
+            
+            curPart = result[key]['partx'];
+            incRow++; 
+            incNo++;
+          }
+          html_sep = `
+                </tbody>
+              </table>
+            </div>
+          </div>
+          `;
+
+          html_data += html_sep;
+        }
+
+        //console.log(html_data);
+        $('#div-data-detail').empty();
+        $('#div-data-detail').append(html_data);
+
+        $('[id^=btn-det-]').click(function(){
+          let data_id = $(this).attr('data-bs-id');
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            id: data_id
+          });
+          fetchData('view-list-det', urlPar);
+        });
+
+        $('[id^=span-total-part-]').each(function(e){
+          e.preventDefault;
+
+          let curSpan = 0;
+          curSpan = $(this).attr('data-bs-span');
+          var count = $('#curCount-' + curSpan).children('tr').length;
+          
+          $('#span-total-part-' + curSpan).empty();
+          $('#span-total-part-' + curSpan).append('Analized ' + count + ' Times');
+          
+          // let avgstyle = '';
+          // if (timex < 0) {
+          //   avgstyle = 'text-danger fw-bold';
+          // } else {
+          //   avgstyle = 'text-success fw-bold';
+          // }
+        });
+      }
+      
+      //detail list
+      function setListDet(result){
+        let htmlData = '', htmlHead = '', htmlForm = '', incRow = 1;
+        let htmlDown = '';
+
+        let ctdDate='', ctdPart='', ctdPartd='', ctdLine='', ctdLined='', ctdFch='', ctdEff='', ctdHc='', ctdWh='', ctdTar='', ctdTt='', ctdTh;
+        let ctdLead = '', ctdGroup='', ctdId = '', curFlag = '';
+        let totBlTime = 0;
+        htmlHead += `
+        <div class="d-flex">
+          <table class="table" style="width: 50%;">
+            <tbody class="align-middle">
+              <tr>
+                <td class="w-25 table-primary">Date</td>
+                <td class="table-primary" style="width:10px">:</td>
+                <td id="tdh-date">3</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Part desc</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-part">3</td>
+              </tr>
+              <tr>
+                <td class="table-primary">Line desc</td>
+                <td class="table-primary">:</td>
+                <td id="tdh-line">3</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <tbody class="align-middle text-center">
+              <tr>
+                <td colspan="8" class="text-start table-primary">SIMULASI</td>
+              </tr>
+              <tr class="table-light">
+                <td>FCH</td>
+                <td>EFF</td>
+                <td>HC</td>
+                <td>WH</td>
+                <td>TARGET</td>
+                <td>TT</td>
+                <td>T/H</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td id="tdh-fch" data-bs-id="">1</td>
+                <td style="width: 20%;"><input type="number" class="form-control form-control text-center" id="txt-sim-eff" name="txt-sim-eff" min="1" max="200" value="" disabled readonly></td>
+                <td><input type="number" class="form-control form-control text-center" id="txt-sim-hc" name="txt-sim-hc" min="1" max="200" value="" disabled readonly></td>
+                <td><input type="number" class="form-control form-control text-center" id="txt-sim-wh" name="txt-sim-wh" min="1" max="200" value="" disabled readonly></td>
+                <td id="tdh-tar">8</td>
+                <td id="tdh-tt">9</td>
+                <td id="tdh-th">10</td>
+                <td>
+                  <button type="button" id="download-det" class="btn btn-sm btn-outline-secondary">
+                    <span class="fas fa-file-download"></span>
+                  </button>  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        `;
+
+        htmlDown += `
+          <table class="table table-sm d-none" id="table-det-cap">
+            <thead>
+              <tr class="align-middle text-center table-success">
+                <th rowspan="2">Process</th>
+                <th rowspan="2">FCH</th>
+                <th colspan="2">CBS</th>
+                <th colspan="2">Target EFF(<span id="span-eff">100%</span>)</th>
+                <th rowspan="2">Operator name</th>
+                <th colspan="2">Actual CT</th>
+                <th colspan="3">Pot. Capacity</th>
+                <th rowspan="2">Bln. Qty</th>
+                <th rowspan="2">Opr. Need</th>
+                <th rowspan="2">Bln. Time(m)</th>
+              </tr>
+              <tr class="align-middle text-center table-success">
+                <th>Tar</th>
+                <th>CT</th>
+                <th>Jam</th>
+                <th>CT</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+        `; 
+
+        htmlData += `
+          <table class="table table-sm">
+            <thead>
+              <tr class="align-middle text-center table-success">
+                <th rowspan="2">Process</th>
+                <th rowspan="2">FCH</th>
+                <th colspan="2">CBS</th>
+                <th colspan="2">Target EFF(<span id="span-eff">100%</span>)</th>
+                <th rowspan="2">Operator name</th>
+                <th colspan="2">Actual CT</th>
+                <th colspan="3">Pot. Capacity</th>
+                <th rowspan="2">Bln. Qty</th>
+                <th rowspan="2">Opr. Need</th>
+                <th rowspan="2">Bln. Time(m)</th>
+              </tr>
+              <tr class="align-middle text-center table-success">
+                <th>Tar</th>
+                <th>CT</th>
+                <th>Jam</th>
+                <th>CT</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>OPT 1</th>
+                <th>OPT 2</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        
+        if (result.empty == undefined) {
+          for (let key in result){  
+            
+            if (key == 0) {
+              ctdId=result[key]['idx'];
+              ctdDate = result[key]['datex'];
+              ctdPart = result[key]['partx'];
+              ctdPartd = result[key]['partdx'];
+              ctdLine = result[key]['linex'];
+              ctdLined = result[key]['linedx'];
+              ctdFch = result[key]['pfchx'];
+              ctdEff = result[key]['effx'];
+              ctdHc = result[key]['hcx'];
+              ctdWh = result[key]['whx'];
+              ctdTar = result[key]['tqtyx'];
+              ctdTt = result[key]['ttx'];
+              ctdTh = result[key]['thx'];
+              ctdLead = result[key]['leadx'];
+              ctdGroup = result[key]['groupx'];
+            }
+
+            if (curFlag != result[key]['pflagx']){
+              if (result[key]['pflagx'] == 'CBS'){
+                htmlData += `
+                  <tr class="align-middle text-start">
+                    <td colspan="17" class="table-warning">CBS process</td>
+                  </tr>
+                `;
+              } else {
+                htmlData += `
+                  <tr class="align-middle text-start">
+                    <td colspan="17" class="table-warning">Additional process</td>
+                  </tr>
+                `;
+              }
+              
+            }
+            
+            let tdSumColor = '';
+            if (Number(result[key]['tpoprct']) < Number(result[key]['thx'])) {
+              if (Number(result[key]['oprct1x']) > 0 ) {
+                tdSumColor = 'table-danger';
+              }
+            }
+
+            let tdSumColorBl = '';
+            if (Number(result[key]['oprblx']) < 0) {
+              if (Number(result[key]['oprct1x']) > 0 ) {
+                tdSumColorBl = 'table-danger';
+              }
+            }
+            
+
+            if (result[key]['pflagx'] == 'CBS') {
+              htmlData += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
+                  <td class="">${result[key]['procdx']}<br><span class="small">M/C: ${result[key]['mcx']}</span></td>
+                  <td class="text-end" id="td-det-fch-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">${result[key]['fchx']}</td>
+                  <td class="text-end" id="td-det-cbt-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">${result[key]['cbstx']}</td>
+                  <td class="text-end" id="td-det-cbc-${result[key]['procx']}">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light" id="td-det-eft-${result[key]['procx']}">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light" id="td-det-efc-${result[key]['procx']}">${result[key]['effctx']}</td>
+                  <td class="text-end"
+                      data-bs-fl="D"
+                      data-bs-tt="${result[key]['ttx']}" 
+                      data-bs-th="${result[key]['thx']}" 
+                      data-bs-proc="${result[key]['procx']}" 
+                      name="txtopr-${result[key]['procx']}" id="txtopr-${result[key]['procx']}">${result[key]['oprx']}
+                  </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end"
+                    data-bs-fl="D" 
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra1-${result[key]['procx']}" name="txtopra1-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct1x']}" disabled readonly>
+                  </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end"
+                    data-bs-fl="D" 
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra2-${result[key]['procx']}" name="txtopra2-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct2x']}" disabled readonly>
+                  </td>
+                  <td class="text-end" id="td-pot-op1-${result[key]['procx']}">${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-op2-${result[key]['procx']}">${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}" id="td-pot-opt-${result[key]['procx']}">${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}" id="td-pot-opb-${result[key]['procx']}">${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-opn-${result[key]['procx']}">${result[key]['oprnedx']}</td>
+                  <td class="text-end" id="td-pot-blt-${result[key]['procx']}">${result[key]['bltmx']}</td>
+                </tr>
+              `;
+
+              htmlDown += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
+                  <td class="">${result[key]['procdx']}<br><span class="small">M/C: ${result[key]['mcx']}</span></td>
+                  <td class="text-end">${result[key]['fchx']}</td>
+                  <td class="text-end">${result[key]['cbstx']}</td>
+                  <td class="text-end">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light">${result[key]['effctx']}</td>
+                  <td class="">
+                    ${result[key]['oprx']}               
+                  </td>
+                  <td class="text-end">
+                    ${result[key]['oprct1x']}
+                  </td>
+                  <td class="text-end">
+                   ${result[key]['oprct2x']}
+                  </td>
+                  <td class="text-end" >${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end" >${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}">${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}">${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end">${result[key]['oprnedx']}</td>
+                  <td class="text-end">${result[key]['bltmx']}</td>
+                </tr>
+              `;
+            } else {
+              // <input type="number" class="form-control form-control-sm text-end" 
+              //       data-bs-tt="${result[key]['ttx']}" 
+              //       data-bs-th="${result[key]['thx']}"
+              //       data-bs-proc="${result[key]['procx']}" 
+              //       id="txtafch-${result[key]['procx']}" name="txtafch-${result[key]['procx']}" min="1" max="9999" value="${result[key]['fchx']}">
+
+              htmlData += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
+                  <td class=""
+                    name="txtaprc-${result[key]['procx']}" 
+                    id="txtaprc-${result[key]['procx']}"
+                    data-bs-fl="E"
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}">${result[key]['procdx']}
+                  </td>
+                  <td class="text-end" id="td-det-fch-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">
+                    ${result[key]['fchx']}
+                  </td>
+                  <td class="text-end" id="td-det-cbt-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">${result[key]['cbstx']}</td>
+                  <td class="text-end" id="td-det-cbc-${result[key]['procx']}">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light" id="td-det-eft-${result[key]['procx']}">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light" id="td-det-efc-${result[key]['procx']}">${result[key]['effctx']}</td>
+                  <td class="text-end"
+                      data-bs-fl="E"
+                      data-bs-tt="${result[key]['ttx']}" 
+                      data-bs-th="${result[key]['thx']}" 
+                      data-bs-proc="${result[key]['procx']}" 
+                      name="txtopr-${result[key]['procx']}" id="txtopr-${result[key]['procx']}">${result[key]['oprx']}
+                  </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end" 
+                    data-bs-fl="E"
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra1-${result[key]['procx']}" name="txtopra1-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct1x']}" disabled readonly>
+                  </td>
+                  <td class="text-end">
+                    <input type="number" class="form-control form-control text-end"
+                    data-bs-fl="E" 
+                    data-bs-tt="${result[key]['ttx']}" 
+                    data-bs-th="${result[key]['thx']}"
+                    data-bs-proc="${result[key]['procx']}" 
+                    id="txtopra2-${result[key]['procx']}" name="txtopra2-${result[key]['procx']}" min="1" max="9999" value="${result[key]['oprct2x']}" disabled readonly>
+                  </td>
+                  <td class="text-end" id="td-pot-op1-${result[key]['procx']}">${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-op2-${result[key]['procx']}">${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}" id="td-pot-opt-${result[key]['procx']}">${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}" id="td-pot-opb-${result[key]['procx']}">${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end" id="td-pot-opn-${result[key]['procx']}">${result[key]['oprnedx']}</td>
+                  <td class="text-end" id="td-pot-blt-${result[key]['procx']}">${result[key]['bltmx']}</td>
+                </tr>
+              `;
+
+              htmlDown += `
+                <tr class="align-middle text-start" id="row-data-${result[key]['id']}">
+                  <td class="">
+                    ${result[key]['procdx']}
+                  </td>
+                  <td class="text-end" id="td-det-fch-${result[key]['procx']}" data-bs-proc="${result[key]['procx']}">
+                    ${result[key]['fchx']}
+                  </td>
+                  <td class="text-end">${result[key]['cbstx']}</td>
+                  <td class="text-end">${result[key]['cbsctx']}</td>
+                  <td class="text-end table-light">${result[key]['efftjx']}</td>
+                  <td class="text-end table-light">${result[key]['effctx']}</td>
+                  <td class="">
+                    ${result[key]['oprx']}               
+                  </td>
+                  <td class="text-end">
+                    ${result[key]['oprct1x']}
+                  </td>
+                  <td class="text-end">
+                    ${result[key]['oprct2x']}
+                  </td>
+                  <td class="text-end">${(Number(result[key]['poprct1x'])).toFixed(0)}</td>
+                  <td class="text-end">${(Number(result[key]['poprct2x'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColor}" >${(Number(result[key]['tpoprct'])).toFixed(0)}</td>
+                  <td class="text-end ${tdSumColorBl}" >${(Number(result[key]['oprblx'])).toFixed(0)}</td>
+                  <td class="text-end">${result[key]['oprnedx']}</td>
+                  <td class="text-end">${result[key]['bltmx']}</td>
+                </tr>
+              `;
+            }
+
+            incRow++; 
+            totBlTime += Number(result[key]['bltmx']);
+            curFlag = result[key]['pflagx'];
+          }
+        }
+
+        htmlData += `
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Minutes) :</td>
+                <td id="td-sum-timem"></td>
+              </tr>
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Hours) :</td>
+                <td id="td-sum-timeh"></td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+
+        htmlDown += `
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Minutes) :</td>
+                <td id="td-sum-timem"></td>
+              </tr>
+              <tr class="align-middle text-end table-warning fw-bold">
+                <td colspan="14" class="">Time balance (Hours) :</td>
+                <td id="td-sum-timeh"></td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+
+        $('.modal-dialog').removeClass('modal-xl');
+        $('.modal-dialog').addClass('modal-fullscreen')
+        $('.modal-title').empty();
+        $('.modal-title').append('Detail Capacity');
+        $('.modal-body').empty();
+        $('.modal-body').append(htmlHead + htmlData + htmlDown);
+        $('#btn-modal-yes').addClass('d-none');
+        $('#btn-modal-no').addClass('d-none');
+        $('#btn-save-yes').addClass('d-none');
+        $('#btn-save-no').addClass('d-none');
+        $("#modalDialog").modal('show');
+
+        //set header
+
+        let htmlPart = `
+          <div class="input-group text-start">
+            <span class="input-group-text">${ctdPart}</span>
+            <span class="input-group-text">${ctdPartd}</span>
+          </div>
+        `;
+
+        htmlPart = `
+          ${ctdPart} - ${ctdPartd}
+        `;
+
+        htmlForm +=`
+          <div class="input-group input-group-sm text-start">
+            <span class="input-group-text">${ctdLined}</span>
+            <span class="input-group-text">${ctdGroup}</span>
+            <span class="input-group-text">${ctdLead}</span>
+          </div>
+        `;
+        
+        $('#tdh-date').empty();
+        $('#tdh-date').append(ctdDate);
+        $('#tdh-part').empty();
+        $('#tdh-part').append(htmlPart);
+        $('#tdh-line').empty();
+        $('#tdh-line').append(htmlForm);
+        $('#tdh-fch').empty();
+        $('#tdh-fch').append(ctdFch);
+        $('#tdh-fch').attr('data-bs-id', ctdId);
+
+        $('#txt-sim-eff').val(Number(ctdEff)*100);
+        $('#txt-sim-hc').val(ctdHc);
+        $('#txt-sim-wh').val(ctdWh);
+
+        $('#tdh-tar').empty();
+        $('#tdh-tar').append(ctdTar);
+        $('#tdh-tt').empty();
+        $('#tdh-tt').append(ctdTt);
+        $('#tdh-th').empty();
+        $('#tdh-th').append(ctdTh);
+
+        let styleBl = '';
+        if (totBlTime < 0) {
+          styleBl="table-danger";
+        } else {
+          styleBl="table-warning";
+        }
+
+        $('#td-sum-timem').empty();
+        $('#td-sum-timem').append(totBlTime);
+        $('#td-sum-timeh').empty();
+        $('#td-sum-timeh').append((totBlTime/60).toFixed(2));
+        $('#td-sum-timem').addClass(styleBl);
+        $('#td-sum-timeh').addClass(styleBl);
+        $('#span-eff').empty();
+        $('#span-eff').append((ctdEff*100).toFixed(0) + '%');
+
+        //EFF
+        $('#txt-sim-eff').change(function (e){
+          e.preventDefault;
+          countDataSim();
+
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'H',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: 0,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProcOpn:'',
+            rProcOp1:'',
+            rProcOp2:''            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        $('#txt-sim-hc').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'H',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: 0,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProcOpn:'',
+            rProcOp1:'',
+            rProcOp2:''            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        $('#txt-sim-wh').change(function (e){
+          e.preventDefault;
+          countDataSim();
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'H',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: 0,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProcOpn:'',
+            rProcOp1:'',
+            rProcOp2:''            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        //formula
+        $('[id^=txtopr-]').change(function (e){
+          e.preventDefault;
+          let curProc = $(this).attr('data-bs-proc');
+          let curFlag = $(this).attr('data-bs-fl');
+          let curProcd = '';
+          if (curFlag == 'E'){
+            curProcd = $('#txtaprc-' + curProc).html();
+          }
+          countData(curProc);
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: curFlag,
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: curProc,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: curProcd,
+            rProcOpn: $('#txtopr-' + curProc).html(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        $('[id^=txtopra1-]').change(function (e){
+          e.preventDefault;
+          let curProc = $(this).attr('data-bs-proc');
+          let curFlag = $(this).attr('data-bs-fl');
+          let curProcd = '';
+          if (curFlag == 'E'){
+            curProcd = $('#txtaprc-' + curProc).html();
+          }
+
+          countData(curProc);
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: curFlag,
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: curProc,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: curProcd,
+            rProcOpn: $('#txtopr-' + curProc).html(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        $('[id^=txtopra2-]').change(function (e){
+          e.preventDefault;
+          let curProc = $(this).attr('data-bs-proc');
+          let curFlag = $(this).attr('data-bs-fl');
+          let curProcd = '';
+          if (curFlag == 'E'){
+            curProcd = $('#txtaprc-' + curProc).html();
+          }
+          countData(curProc);
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: curFlag,
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: curProc,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: curProcd,
+            rProcOpn: $('#txtopr-' + curProc).html(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        // additional
+        $('[id^=txtaprc-]').change(function (e){
+          e.preventDefault;
+          let curProc = $(this).html('data-bs-proc');
+          let urlPar = '';
+          urlPar = new URLSearchParams({
+            rflag: 'E',
+            rId: $('#tdh-fch').attr('data-bs-id'),            
+            rIdProc: curProc,
+            rEff: $('#txt-sim-eff').val(),
+            rHc: $('#txt-sim-hc').val(),
+            rWh: $('#txt-sim-wh').val(),
+            rProc: $(this).val(),
+            rProcOpn: $('#txtopr-' + curProc).html(),
+            rProcOp1: $('#txtopra1-' + curProc).val(),
+            rProcOp2: $('#txtopra2-' + curProc).val()            
+          });
+          fetchData('upd-list-det', urlPar);
+        });
+
+        function countData(procId){
+          let curProc = procId;
+          let curValOp1 = Number($('#txtopra1-'+curProc).val());
+          let curValOp2 = Number($('#txtopra2-'+curProc).val());
+          let curTime = 3600;
+          let curTt = Number($('#tdh-tt').html());
+          let curTh = Number($('#tdh-th').html());
+          let curPop1 = (curValOp1 == 0 ? 0 : Number(curTime/curValOp1));
+          let curPop2 = (curValOp2 == 0 ? 0 : Number(curTime/curValOp2));
+
+          //console.log(curProc + "|" + curValOp1 + "|" + curValOp2 + "|" + curTt + "|" + curTh);
+
+          //pot op1
+          $('#td-pot-op1-'+curProc).empty();
+          $('#td-pot-op1-'+curProc).append((curPop1).toFixed(0));
+
+          //pot op2
+          $('#td-pot-op2-'+curProc).empty();
+          $('#td-pot-op2-'+curProc).append((curPop2).toFixed(0));
+
+          //pot sum
+          $('#td-pot-opt-'+curProc).empty();
+          $('#td-pot-opt-'+curProc).append((curPop1+curPop2).toFixed(0));
+
+          //ot total
+          if ((Number(curPop1)+Number(curPop2)) < curTh ) {
+            $('#td-pot-opt-'+curProc).removeClass('table-danger');
+            if ((Number(curPop1)+Number(curPop2)) != 0) {              
+              $('#td-pot-opt-'+curProc).addClass('table-danger');
+            }
+          }else{
+            $('#td-pot-opt-'+curProc).removeClass('table-danger');
+          }
+
+          //op balance
+          let curOpb = (curPop1+curPop2)-curTh;
+          $('#td-pot-opb-'+curProc).empty();
+          $('#td-pot-opb-'+curProc).append((curOpb).toFixed(0));
+          if (curOpb < 0 ) {
+            $('#td-pot-opb-'+curProc).removeClass('table-danger');
+            if ((Number(curPop1)+Number(curPop2)) != 0) {   
+              $('#td-pot-opb-'+curProc).addClass('table-danger');
+            }
+          } else {
+            $('#td-pot-opb-'+curProc).removeClass('table-danger');
+          }
+          
+          //op need
+          let curOpn = (curValOp1/curTt);
+          $('#td-pot-opn-'+curProc).empty();
+          $('#td-pot-opn-'+curProc).append((curOpn).toFixed(2));
+
+          //bln time
+          let curTimeBln = (curOpb*curValOp1)/60;
+          $('#td-pot-blt-'+curProc).empty();
+          $('#td-pot-blt-'+curProc).append((curTimeBln).toFixed(0));
+
+          countDataTot();
+        }
+
+        function countDataTot(){
+          let curTot = 0;
+          $('[id^=td-pot-blt-]').each(function (e){
+            e.preventDefault;            
+            //console.log(Number($(this).html()));
+            curTot += Number($(this).html());            
+          });
+          $('#td-sum-timem').empty();
+          $('#td-sum-timem').append(curTot);
+
+          $('#td-sum-timeh').empty();
+          $('#td-sum-timeh').append((curTot/60).toFixed(2));
+        }
+
+        function countDataSim(){
+          let curFc = Number($('#tdh-fch').html());
+          let curEf = Number($('#txt-sim-eff').val());
+          let curHc = Number($('#txt-sim-hc').val());
+          let curWh = Number($('#txt-sim-wh').val());
+          let curTr = curHc*curWh/curFc*1000*curEf/100;
+          let curTt = 3600*curWh/curTr;
+          let curTh = curTr/curWh;
+          //console.log(curTr + '-' + curTt + '-' + curTh);
+
+          //set value
+          $('#span-eff').empty();
+          $('#span-eff').append(curEf + '%');
+
+          $('#tdh-tar').empty();
+          $('#tdh-tar').append(curTr.toFixed(0));
+          $('#tdh-tt').empty();
+          $('#tdh-tt').append(curTt.toFixed(0));
+          $('#tdh-th').empty();
+          $('#tdh-th').append(curTh.toFixed(0));
+          
+          $('[id^=td-det-cbt-]').each(function (){
+            let curPrc = $(this).attr('data-bs-proc');
+            let curCbt = Number($(this).html());
+            let curEfc = 3600/(curCbt*(curEf/100));
+            let curEft = 3600/curEfc;
+
+            $('#td-det-efc-' + curPrc).empty();
+            $('#td-det-efc-' + curPrc).append(curEfc.toFixed(0));
+            $('#td-det-eft-' + curPrc).empty();
+            $('#td-det-eft-' + curPrc).append(curEft.toFixed(0));
+            //console.log(curEfc +'-'+ curEft);
+            countData(curPrc);
+          });
+        }
+        //console.log(htmlData);
+        
+        $("#download-det").click(function(){
+          ExportToExcel('table-det-cap', 'xlsx', undefined, undefined, 'detail_capacity');
+          // console.log('test');
+        });
+      }
+      
+      function ExportToExcel(tableId, type, fn, dl, nm) {
+        var elt = document.getElementById(tableId);
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        return dl ?
+          XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+          XLSX.writeFile(wb, fn || (nm + '.' + (type || 'xlsx')));
+      }
+
+      $('#nav-cnt-header').click(function (e){
+        e.preventDefault();
+        $('#nav-men-list').removeClass('d-none');
+        $('#nav-cnt-header').addClass('d-none');
+        $('#div-data-detail').addClass('d-none');
+        $('#filter-list').removeClass('d-none');
+        $('#div-data-header').removeClass('d-none');
+      });
+
+      $('input[name="date"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        locale: {
+          format: 'YYYY-MM-DD'
+        }
+      });
+
+      // $("#date").change(function (e) { 
+      //   e.preventDefault();
+      //   $('#detail-list').addClass('d-none');
+      //   $('#lot-loader').removeClass('d-none');
+      //   fetchData('view-detail-list', setUrlParam(1));
+      // });
+
+      $("#unit").change(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+
+      $("#line").change(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+
+      $("#group").change(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+
+      $("#style").keyup(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+     
+      $("#refresh").click(function (e) { 
+        e.preventDefault();
+        fetchData('view-detail-list', setUrlParam(1));
+      });
+         
+      // ############################################ 
+      // General
+      // ############################################
+      //first load data
+      fetchData('view-detail-list', setUrlParam(1));
+
+      $("#nav-prd-list").click(function(){
+        setView('view-detail-list');
+      });
+      
+      setInterval(() => {
+        //$('#accepted-list').addClass('d-none');
+        //$('#lot-loader').removeClass('d-none');
+        //fetchData('view-detail-list', setUrlParam(1));
+      }, 30000);
+
+    });
+  </script>
+</body>
+</html>
