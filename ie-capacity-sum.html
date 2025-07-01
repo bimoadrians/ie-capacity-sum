@@ -574,7 +574,7 @@
           var count = $('#curCount-' + curSpan).children('tr').length;
           
           $('#span-total-part-' + curSpan).empty();
-          $('#span-total-part-' + curSpan).append('Analized ' + count + ' Times');
+          $('#span-total-part-' + curSpan).append('Analized (' + count + ')');
           
           // let avgstyle = '';
           // if (timex < 0) {
@@ -989,12 +989,12 @@
         $('#tdh-fch').append(ctdFch);
         $('#tdh-fch').attr('data-bs-id', ctdId);
 
-        $('#txt-sim-eff').val(Number(ctdEff)*100);
+        $('#txt-sim-eff').val((Number(ctdEff)*100).toFixed(0));
         $('#txt-sim-hc').val(ctdHc);
         $('#txt-sim-wh').val(ctdWh);
 
         $('#tdh-tar').empty();
-        $('#tdh-tar').append(ctdTar);
+        $('#tdh-tar').append((Number(ctdTar)).toFixed(0));
         $('#tdh-tt').empty();
         $('#tdh-tt').append(ctdTt);
         $('#tdh-th').empty();
